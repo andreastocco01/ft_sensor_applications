@@ -45,7 +45,12 @@
 \pagenumbering{arabic}
 
 \clearpage{\pagestyle{plain}\cleardoublepage} %Comando per iniziare il capitolo su pagina dispari
-\chapter{Primo Capitolo} %Nome capitolo
-\label{chapter:primo_capitolo} %Label per creare riferimenti al capitolo
+\chapter*{Introduzione} %Nome capitolo
+\addcontentsline{toc}{chapter}{Introduzione} 
+\input{intro.tex} %File in cui verrà scritto il capitolo
+
+\clearpage{\pagestyle{plain}\cleardoublepage} %Comando per iniziare il capitolo su pagina dispari
+\chapter{ROS} %Nome capitolo
+\label{chapter:chapter1} %Label per creare riferimenti al capitolo
 \input{intro1.tex} %File in cui verrà scritto il capitolo
 \end{document}
