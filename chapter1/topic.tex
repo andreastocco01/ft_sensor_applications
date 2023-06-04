@@ -1,6 +1,6 @@
-I topic sono dei canali di comunicazione unidirezionali che consentono lo scambio di informazioni tra nodi sottoforma di 
-messaggi. Un nodo che pubblica messaggi su un topic viene chiamato publisher, mentre un nodo che legge i messaggi da un topic 
-viene chiamato subscriber.
+I \textbf{topic} sono dei canali di comunicazione unidirezionali che consentono lo scambio di informazioni tra nodi sottoforma di 
+messaggi. Un nodo che pubblica messaggi su un topic viene chiamato \textbf{publisher}, mentre un nodo che legge i messaggi da un topic 
+viene chiamato \textbf{subscriber}.
 \begin{figure}[H]
     \centering
     \includegraphics*[width=0.75\textwidth]{images/topic_graph.png}
@@ -13,7 +13,7 @@ A discapito del nome, questa funzione non pubblica effettivamente il messaggio, 
 dimensione viene specificata quando viene istanziato il publisher).
 Un thread separato si occupa di inviare effettivamente il messaggio al topic per renderlo visibile a tutti i nodi subscriber 
 connessi.
-Se il numero di messaggi in coda supera la dimensione di essa, i messaggi pi\'{u} vecchi verranno cancellati per fare spazio 
+Se il numero di messaggi in coda supera la sua dimensione, i messaggi pi\'{u} vecchi verranno cancellati per fare spazio 
 a quelli pi\'{u} recenti. Quando arriva un nuovo messaggio al subscriber, esso viene salvato 
 in una coda d'attesa (stesso funzionamento di quella del publisher) fino a quando ROS non d\'{a} la possibilit\'{a} al nodo 
 di eseguire la funzione di callback. Tale funzione \'{e} definita dall'utente e si occupa di processare il messaggio ricevuto. 
@@ -35,5 +35,4 @@ ROS eseguir\'{a} una callback solo quando gli daremo il permesso di farlo. Ci so
           \end{itemize}
 \end{itemize}
 In altre parole \verb|ros::spin()| vincola il nodo a rimanere sempre e solo in attesa di leggere nuovi messaggi. 
-Se il nodo non deve solamente eseguire le callback, allora un loop con \verb|ros::spinOnce()| \'{e} la scelta corretta.
-(Aggiungere link ad un mio pacchetto di esempio???)
+Se il nodo non deve solamente eseguire le callback, allora un loop con \verb|ros::spinOnce()| \'{e} la scelta corretta. 
