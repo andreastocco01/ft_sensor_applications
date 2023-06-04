@@ -7,3 +7,33 @@ viene chiamato subscriber.
     \caption{Schema di comunicazione}
     \label{fig:topic_graph}
 \end{figure}
+Per pubblicare un messaggio su un topic bisogna utilizzare l'apposita funzione \verb|publish()| passandole come parametro 
+il messaggio che vogliamo pubblicare.
+A discapito del nome, questa funzione non pubblica effettivamente il messaggio, ma lo mette in una coda d'attesa (la cui 
+dimensione viene specificata quando viene istanziato il publisher).
+Un thread separato si occupa di inviare effettivamente il messaggio al topic per renderlo visibile a tutti i nodi subscriber 
+connessi.
+Se il numero di messaggi in coda supera la dimensione di essa, i messaggi pi\'{u} vecchi verranno cancellati per fare spazio 
+a quelli pi\'{u} recenti. Quando arriva un nuovo messaggio al subscriber, esso viene salvato 
+in una coda d'attesa (stesso funzionamento di quella del publisher) fino a quando ROS non d\'{a} la possibilit\'{a} al nodo 
+di eseguire la funzione di callback. Tale funzione \'{e} definita dall'utente e si occupa di processare il messaggio ricevuto. 
+ROS eseguir\'{a} una callback solo quando gli daremo il permesso di farlo. Ci sono due modi per fare ci\'{o}:
+\begin{itemize}
+    \item \verb|ros::spinOnce()| chiede a ROS di eseguire tutte le callback in sospeso e poi ci restituisce il controllo
+    \item \verb|ros::spin()| chiede a ROS di attendere e di eseguire tutte le callback in sospeso fino a quando il nodo non 
+          viene spento. \'{E} equivalente a:
+          \begin{verbatim}
+            while (ros::ok()) {
+                ros::spinOnce();
+            }
+          \end{verbatim} 
+          \verb|ros::ok()| ritorna 0 quando: 
+          \begin{itemize}
+            \item il nodo viene spento attraverso un SIGINT (Ctrl-C) oppure dalla chiamata di \verb|ros::shutdown()| in 
+                  un altro punto del codice
+            \item un altro nodo con lo stesso nome viene eseguito
+          \end{itemize}
+\end{itemize}
+In altre parole \verb|ros::spin()| vincola il nodo a rimanere sempre e solo in attesa di leggere nuovi messaggi. 
+Se il nodo non deve solamente eseguire le callback, allora un loop con \verb|ros::spinOnce()| \'{e} la scelta corretta.
+(Aggiungere link ad un mio pacchetto di esempio???)
