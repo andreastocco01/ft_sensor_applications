@@ -11,6 +11,9 @@ che pu\'{o} essere facilmente posizionato `al di sopra' del sensore.
 L'FT300-S \'{e} in grado di rilevare forze e torsioni nel range di $\pm 300 N$ e $\pm 30 Nm$ rispettivamente. 
 Le misurazioni del sensore hanno un rumore di fondo intrinseco, \'{e} quindi necessario scartare tutti i dati al di sotto delle 
 soglie consigliate nel manuale \cite{ft_sensor} in quanto non attendibili. 
+Per interfacciarsi con il sensore sono disponibili due modalit\'{a} di comunicazione: \textbf{ModbusRTU} e \textbf{data stream}. 
+La prima viene utilizzata per inviare comandi al sensore (es. azzeramento) e per richiedere informazioni su di esso, la seconda 
+per ottenere un flusso continuo di dati relativi alle misurazioni effettuate. 
 Per collegare il sensore al PC sono state provate due alternative: 
 \begin{itemize}
     \item collegamento via USB tra sensore e control box e via ethernet tra control box e computer
