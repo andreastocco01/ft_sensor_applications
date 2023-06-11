@@ -1,23 +1,29 @@
 I robot manipolatori hanno rivoluzionato l'automazione industriale, permettendo lo svolgimento
-di operazioni complesse in modo rapido, preciso e sicuro.
+di operazioni complesse in modo rapido, preciso e sicuro. 
+Uno dei modelli pi\'{u} utilizzato \'{e} l'\textbf{UR5} di \textbf{Universal Robot}. Per via della sua flessibilit\'{a} 
+ed efficienza si \'{e} scelto di utilizzarlo in questo studio. 
 Un ruolo chiave nel controllo di questi robot viene assunto dai sensori coppia-forza,
 che permettono di misurare e regolare la forza esercitata dal robot durante lo svolgimento delle proprie attivit\'{a}. 
 La loro versatilit\'{a} li rende strumenti preziosi in molti campi tra cui: la \textbf{robotica industriale} e la \textbf{medicina}. 
-Essi infatti consentono ai robot di controllare la forza esercitata durante le operazioni di assemblaggio, levigatura, 
+Essi infatti consentono al robot di controllare la forza esercitata durante le operazioni di assemblaggio, levigatura, 
 saldatura e manipolazione degli oggetti. Vengono inoltre utilizzati nella riabilitazione, per valutare la forza muscolare 
 e i progressi del paziente.
-Uno dei modelli di robot manipolatori pi\'{u} utilizzato \'{e} l'\textbf{UR5} di \textbf{Universal Robot}, per via della sua flessibilit\'{a} 
-ed efficienza.
-Tuttavia, a differenza di altri, l'UR5 non \'{e} dotato di sensori coppia-forza.
-\'{E} stato, dunque, necessario installarne uno manualmente. 
-% aggiungere panoramica sensori coppia-forza
-A tale scopo si \'{e} scelto di utilizzare il sensore \textbf{FT 300-S} 
-di \textbf{Robotiq}. 
+% aggiungere foto levigatura e riabilitazione
+Questi sensori sono in grado di convertire le forze e le coppie applicati ad essi in segnali elettrici che possono essere 
+interpretati da altri dispositivi. 
+Esistono varie tipologie di sensori coppia-forza, ognuna delle quali ha un diverso meccanismo di funzionamento. 
+I sensori \textbf{piezoelettrici} sfruttano la propriet\'{a} di alcuni materiali (cristalli piezoelettrici) 
+di generare una carica elettrica se sottoposti a deformazione meccanica. Tale variazione  
+pu\'{o} essere misurata per determinare la forza o la coppia applicata.
+Il sensore \textbf{FT 300-S} di \textbf{Robotiq} sfrutta questo principio di funzionamento ed \'{e} in grado di misurare 
+forze e coppie lungo i sei gradi di libert\'{a} (x, y, z, roll, pitch, yaw). 
+\'{E} stato necessario installarlo manualmente sull'UR5 perch\'{e}, a differenza di altri, non possiede sensori 
+coppia-forza integrati. 
 In questa tesi verr\'{a} presentata l'implementazione di un sistema di controllo della forza per l'UR5 utilizzando i dati
 forniti dall'FT 300-S e il framework di sviluppo \textbf{ROS (Robot Operating System)}.
 ROS \'{e} ampiamente utilizzato dalla comunit\'{a} informatica perch\'{e} fornisce strumenti e librerie 
 per il controllo e la comunicazione tra le componenti di un sistema robotico.
-Verranno effettuati prima, alcuni test per valutare le prestazioni del sensore in termini di reattivit\'{a} e precisione, 
-e successivamente presentate delle possibili applicazioni volte a dimostrare l'efficacia
-di tali sensori per lo svolgimento di attivit\'{a} industriali.
-% aggiungere citazioni agli esperimenti e alle applicazioni fatte
+Alcuni test per la valutazione delle prestazioni del sensore in termini di reattivit\'{a} e precisione verranno descritti nel Capitolo 
+\ref{chapter:chapter4}.
+Nel Capitolo \ref{chapter:chapter5}, invece, verranno presentate delle possibili applicazioni volte a dimostrare l'efficacia
+di tali sensori per lo svolgimento di attivit\'{a} industriali, come il \textbf{pick and place} e il \textbf{trasporto collaborativo}.
