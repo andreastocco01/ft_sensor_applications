@@ -61,7 +61,7 @@ La control box, riceve tali messaggi e li converte nel formato:
     (Fx, Fy, Fz, Mx, My, Mz)
 \end{verbatim}
 Per rendere disponibili i dati ricevuti agli altri nodi, il driver, dopo averli convertiti in decimale, li pubblica sul 
-topic \verb|sensor_topic|.
+topic \verb|sensor_topic| \cite{ft_driver}.
 \subsection{Collegamento diretto via USB tra sensore e computer}
 \begin{figure}[H]
     \centering
@@ -69,5 +69,14 @@ topic \verb|sensor_topic|.
     \caption{Schema collegamento}
     \label{fig:ft-pc}
 \end{figure}
-bla bla bla
+Con questa configurazione, invece, un driver per la lettura dei dati del sensore ci viene gi\'{a} fornito da Robotiq.
+Una volta scaricato il loro repository GitHub \cite{robotiq_repo}, per eseguire il driver \'{e} sufficiente far partire 
+un nuovo nodo ROS con il comando \verb|rosrun robotiq_ft_sensor rq_sensor|. 
+Il driver consente l'utilizzo di entrambe le modalit\'{a} di comunicazione descritte in precedenza (ModbusRTU e data stream).
+Viene infatti creato il service \verb|robotiq_ft_sensor_acc| per l'invio di comandi al sensore come, ad esempio, la richiesta 
+di azzeramento. Inoltre, viene generato il topic \verb|robotiq_ft_wrench| in cui vengono pubblicate le misurazioni prodotte dal 
+sensore. Quindi, per avere il pieno controllo del sensore, \'{e} sufficiente creare un client per le richieste al service 
+\verb|robotiq_ft_sensor_acc| e un subscriber per leggere i dati presenti sul topic \verb|robotiq_ft_wrench|.
+Per gli esperimenti e le applicazioni industriali descritte nel Capitoli \ref{chapter:chapter3}, \ref{chapter:chapter4} si \'{e} 
+scelto di utilizzare questo secondo approccio e quindi di collegare direttamente il sensore al PC via USB.
 
