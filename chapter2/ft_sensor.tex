@@ -1,5 +1,5 @@
-Il sensore FT300-S di Robotiq \'{e} stato installato all'estremit\'{a} dell'UR5 e collegato alla control box per ricevere 
-l'alimentazione necessaria. 
+Il sensore FT300-S di Robotiq \'{e} stato installato all'estremit\'{a} dell'UR5 e collegato alla control box tramite il proprio 
+cavo di alimentazione. 
 \begin{figure}[H]
     \centering
     \includegraphics*[width=0.5\textwidth]{images/ft.png}
@@ -11,10 +11,10 @@ che pu\'{o} essere facilmente posizionato `al di sopra' del sensore.
 L'FT300-S \'{e} in grado di rilevare forze e torsioni nel range di $\pm 300 N$ e $\pm 30 Nm$ rispettivamente. 
 Le misurazioni del sensore hanno un rumore di fondo intrinseco, \'{e} quindi necessario scartare tutti i dati al di sotto delle 
 soglie consigliate nel manuale \cite{ft_sensor} in quanto non attendibili. 
-Per interfacciarsi con il sensore sono disponibili due modalit\'{a} di comunicazione: \textbf{ModbusRTU} e \textbf{data stream}. 
+Per interfacciarsi con il sensore dal PC sono disponibili due modalit\'{a} di comunicazione: \textbf{ModbusRTU} e \textbf{data stream}. 
 La prima viene utilizzata per inviare comandi al sensore (es. azzeramento) e per richiedere informazioni su di esso, la seconda 
 per ottenere un flusso continuo di dati relativi alle misurazioni effettuate. 
-Per collegare il sensore al PC sono state provate due alternative: 
+Per usufruire di tali modalit\'{a} di comunicazione sono state provate due alternative: 
 \begin{itemize}
     \item collegamento via USB tra sensore e control box e via ethernet tra control box e computer
     \item collegamento diretto via USB tra sensore e computer
@@ -27,8 +27,41 @@ Per collegare il sensore al PC sono state provate due alternative:
     \caption{Schema collegamento}
     \label{fig:ft-cbox-pc}
 \end{figure}
-bla bla bla
-
+Con la configurazione mostrata in Figura \ref{fig:ft-cbox-pc}, per poter leggere i dati provenienti dal sensore \'{e} stato 
+necessario sviluppare un \textbf{driver}. 
+Per prima cosa si \'{e} stabilita una connessione di rete tramite un \textbf{socket} collegato all'indirizzo IP del robot, 
+in particolare alla porta \textbf{63351}. 
+Su tale porta il sensore invier\'{a} un flusso continuo di messaggi ad una frequenza di 100Hz \cite{ft_sensor}. 
+Come da manuale, i messaggi sono lunghi 16 byte e hanno la seguente struttura: 
+\begin{verbatim}
+    buff[0] = 0x20
+    buff[1] = 0x4E
+    buff[2] = Fx * 100 (LSB)        LSB = Least Significant Bit
+    buff[3] = Fx * 100 (MSB)        MSB = Most Significant Bit
+    buff[4] = Fy * 100 (LSB)
+    buff[5] = Fy * 100 (MSB)
+    buff[6] = Fz * 100 (LSB)
+    buff[7] = Fz * 100 (MSB)
+    buff[8] = Mx * 1000 (LSB)
+    buff[9] = Mx * 1000 (MSB)
+    buff[10] = My * 1000 (LSB)
+    buff[11] = My * 1000 (MSB)
+    buff[12] = Mz * 1000 (LSB)
+    buff[13] = Mz * 1000 (MSB)
+    buff[14] = LSB CRC        CRC = Cyclic Redundancy Check
+    buff[15] = MSB CRC
+\end{verbatim} 
+Ogni elemento dell'array contiene un byte in formato esadecimale. 
+Le forze (F), i momenti (M) e il CRC vengono rappresentati con 2 byte ciascuno. Il byte pi\'{u} significativo e quello meno significativo 
+vengono divisi e inviati come elementi differenti.
+I primi due byte sono fissati, gli ultimi due rappresentano il CRC (che consente la rilevazione di eventuali errori di 
+trasmissione) e quelli intermedi codificano le forze e i momenti percepiti dal sensore. 
+La control box, riceve tali messaggi e li converte nel formato:
+\begin{verbatim}
+    (Fx, Fy, Fz, Mx, My, Mz)
+\end{verbatim}
+Per rendere disponibili i dati ricevuti agli altri nodi, il driver, dopo averli convertiti in decimale, li pubblica sul 
+topic \verb|sensor_topic|.
 \subsection{Collegamento diretto via USB tra sensore e computer}
 \begin{figure}[H]
     \centering
