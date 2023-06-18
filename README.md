@@ -9,7 +9,7 @@ Panoramica generale e definizione dello scopo della tesi (uso dei sensori per ap
 ## Ambiente di lavoro
 - interfacciamento col robot e caratteristiche
 - interfacciamento col sensore (cbox o usb) e caratteristiche
-- scena (URDF, RViz)
+- scena (URDF, MoveIt)
 - uso dei controllori
 
 ## Validazione del sensore

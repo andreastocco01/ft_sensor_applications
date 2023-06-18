@@ -1,0 +1,17 @@
+Dopo aver introdotto i concetti base di ROS e descritto le principali caratteristiche di robot e sensore, in questa sezione si 
+parler\'{a} di \textbf{MoveIt}. 
+MoveIt \'{e} un framework specifico di ROS specializzato nella \textbf{pianificazione del movimento}. Offre un'ampia gamma 
+di strumenti e librerie per la generazione delle traiettorie, la gestione della cinematica, la simulazione e il controllo 
+dei robot. 
+Prima di procedere ulteriormente, \'{e} per\'{o} opportuno fornire una breve introduzione ai file URDF.
+Gli \textbf{URDF} (Unified Robot Description Format) sono dei file basati sul formato XML (eXtensible Markup Language) e 
+costituiscono uno standard per rappresentare la geometria, la cinematica e altre caratteristiche dei robot all'interno di ROS. 
+Grazie a questi file, è possibile definire la gerarchia dei \textbf{link} del robot, specificandone anche informazioni quali  
+le dimensioni, la massa e l'inerzia. Inoltre, gli URDF consentono di modellare i \textbf{giunti}
+del robot, definendone i limiti di movimento e le relazioni cinematiche con i link adiacenti. 
+Robotiq e Universal Robot mettono a disposizione i file URDF dei propri prodotti. Per ricreare l'ambiente di lavoro presente in 
+laboratorio \'{e} stato necessario `unire' la rappresentazione del robot con quella del sensore in un nuovo file URDF contenente 
+anche caratteristiche proprie dell'ambiente, come il tavolo su cui \'{e} montato il braccio, il piano di lavoro e il muro. 
+Per semplificare il processo di configurazione e setup del sistema, MoveIt mette a disposizione il \textbf{MoveIt Setup Assistant}. 
+Si tratta di uno strumento che fornisce un'interfaccia grafica per consentire agli utenti di personalizzare i file di configurazione 
+che verranno successivamente generati da questo strumento. 
