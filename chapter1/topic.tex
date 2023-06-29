@@ -17,9 +17,9 @@ Se il numero di messaggi in coda supera la sua dimensione, i messaggi pi\'{u} ve
 a quelli pi\'{u} recenti. Quando arriva un nuovo messaggio al subscriber, esso viene salvato 
 in una coda d'attesa (stesso funzionamento di quella del publisher) fino a quando ROS non d\'{a} la possibilit\'{a} al nodo 
 di eseguire la funzione di callback. Tale funzione \'{e} definita dall'utente e si occupa di processare il messaggio ricevuto. 
-ROS eseguir\'{a} una callback solo quando gli daremo il permesso di farlo. Ci sono due modi per fare ci\'{o}:
+ROS eseguir\'{a} una callback solo quando gli verr\'{a} dato il permesso di farlo. Ci sono due modi per farlo:
 \begin{itemize}
-    \item \verb|ros::spinOnce()| chiede a ROS di eseguire tutte le callback in sospeso e poi ci restituisce il controllo
+    \item \verb|ros::spinOnce()| chiede a ROS di eseguire tutte le callback in sospeso restituendo poi il controllo all'utente
     \item \verb|ros::spin()| chiede a ROS di attendere e di eseguire tutte le callback in sospeso fino a quando il nodo non 
           viene spento. \'{E} equivalente a:
           \begin{verbatim}

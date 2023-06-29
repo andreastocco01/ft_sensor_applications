@@ -20,9 +20,9 @@ del braccio robotico (punto di applicazione dell'end effector) e il centro di gr
 Come si pu\'{o} notare in Figura \ref{fig:payload}, l'UR5 \'{e} in grado di sopportare un carico massimo di 5kg finch\'{e} 
 l'estensione del braccio non supera i 350mm. Da qui in poi al crescere dell'offset seguir\'{a} una diminuzione del carico massimo 
 applicabile.
-L'UR5 \'{e} collegato alla cosiddetta \textbf{control box} che \'{e} un dispositivo collegato alla rete elettrica 
+L'UR5 \'{e} collegato ad una \textbf{control box} che \'{e} un dispositivo alimentato elettricamente 
 in grado di fornire energia sia al robot che alle periferiche collegate ad esso. Sulla control box \'{e} presente poi un'uscita 
-ethernet per la connessione e il controllo remoto, a cui \'{e} stato collegato il computer da cui vengono lanciati tutti 
+ethernet per la connessione ad un PC per il controllo remoto, da cui vengono lanciati tutti 
 gli applicativi sviluppati.
 \begin{figure}[H]
     \centering
@@ -42,7 +42,7 @@ gli applicativi sviluppati.
     \label{fig:box-pendant}
 \end{figure}
 In Figura \ref{fig:box-pendant} vengono mostrati la control box e il \textbf{Teach Pendant}, un dispositivo touchscreen collegato 
-alla control box che consente il controllo del robot. Sul Teach Pendant \'{e} eseguita un'interfaccia chiamata \textbf{Polyscope} 
+alla control box che consente il controllo diretto del robot. Sul Teach Pendant \'{e} eseguita un'interfaccia chiamata \textbf{Polyscope} 
 che permette la programmazione dei movimenti del robot e il cambiamento di alcune sue impostazioni. 
 Per poter controllare l'UR5 tramite ROS \'{e}, tuttavia, necessario installare sul Teach Pendant il plugin \textbf{externalcontrol.urcap}, 
 creare un nuovo programma su Polyscope che preveda l'utilizzo del plugin e impostare l'indirizzo ip del computer remoto da cui 

@@ -6,10 +6,10 @@ cavo di alimentazione.
     \caption{FT300-S}
     \label{fig:ft}
 \end{figure}
-\'{E} importante notare come la sua presenza non precluda la possibilit\'{a} di installazione di un end effector, 
+\'{E} importante notare come la sua presenza non precluda la possibilit\'{a} di installazione anche di un end effector, 
 che pu\'{o} essere facilmente posizionato `al di sopra' del sensore. 
-L'FT300-S \'{e} in grado di rilevare forze e torsioni nel range di $\pm 300 N$ e $\pm 30 Nm$ rispettivamente. 
-Le misurazioni del sensore hanno un rumore di fondo intrinseco, \'{e} quindi necessario scartare tutti i dati al di sotto delle 
+L'FT300-S \'{e} in grado di rilevare forze e torsioni nel range di, rispettivamente, $\pm 300 N$ e $\pm 30 Nm$. 
+Siccome le misurazioni del sensore hanno un rumore di fondo intrinseco, \'{e} necessario scartare tutti i dati al di sotto delle 
 soglie consigliate nel manuale \cite{ft_sensor} in quanto non attendibili. 
 Per interfacciarsi con il sensore dal PC sono disponibili due modalit\'{a} di comunicazione: \textbf{ModbusRTU} e \textbf{data stream}. 
 La prima viene utilizzata per inviare comandi al sensore (es. azzeramento) e per richiedere informazioni su di esso, la seconda 
@@ -27,10 +27,10 @@ Per usufruire di tali modalit\'{a} di comunicazione sono state provate due alter
     \caption{Schema collegamento}
     \label{fig:ft-cbox-pc}
 \end{figure}
-Con la configurazione mostrata in Figura \ref{fig:ft-cbox-pc}, per poter leggere i dati provenienti dal sensore \'{e} stato 
+Con la configurazione mostrata in Figura \ref{fig:ft-cbox-pc}, per poter leggere i dati provenienti dal sensore, \'{e} stato 
 necessario sviluppare un \textbf{driver}. 
-Per prima cosa si \'{e} stabilita una connessione di rete tramite un \textbf{socket} collegato all'indirizzo IP del robot, 
-in particolare alla porta \textbf{63351}. 
+Poi si \'{e} stabilita una connessione di rete tramite un \textbf{socket} collegato all'indirizzo IP del robot, 
+alla porta \textbf{63351}. 
 Su tale porta il sensore invier\'{a} un flusso continuo di messaggi ad una frequenza di 100Hz \cite{ft_sensor}. 
 Come da manuale, i messaggi sono lunghi 16 byte e hanno la seguente struttura: 
 \begin{verbatim}
@@ -77,6 +77,6 @@ Viene infatti creato il service \verb|robotiq_ft_sensor_acc| per l'invio di coma
 di azzeramento. Inoltre, viene generato il topic \verb|robotiq_ft_wrench| in cui vengono pubblicate le misurazioni prodotte dal 
 sensore. Quindi, per avere il pieno controllo del sensore, \'{e} sufficiente creare un client per le richieste al service 
 \verb|robotiq_ft_sensor_acc| e un subscriber per leggere i dati presenti sul topic \verb|robotiq_ft_wrench|.
-Per gli esperimenti e le applicazioni industriali descritte nel Capitoli \ref{chapter:chapter3}, \ref{chapter:chapter4} si \'{e} 
+Per gli esperimenti e le applicazioni industriali descritte nel Capitoli \ref{chapter:chapter3} e \ref{chapter:chapter4} si \'{e} 
 scelto di utilizzare questo secondo approccio e quindi di collegare direttamente il sensore al PC via USB.
 

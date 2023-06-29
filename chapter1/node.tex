@@ -5,8 +5,8 @@ Un \textbf{nodo} \'{e} un eseguibile che sfrutta ROS per comunicare con altri no
 Quando viene lanciato il comando \verb|catkin_make|, ogni file sorgente in ogni pacchetto viene compilato 
 dando origine ad un nodo.
 Impropriamente, si potrebbe quindi dire che un pacchetto \'{e} un insieme di nodi riguardanti la stessa applicazione.
-Per poter eseguire un nodo \'{e} sufficiente eseguire il comando \verb|rosrun <nome_pacchetto> <nome_nodo>|.
-Tuttavia si incorrer\'{a} in un errore se prima non viene fatto partire un ROS Master.
+Per poter eseguire un nodo \'{e} sufficiente eseguire il comando \verb|rosrun <nome_pacchetto> <nome_nodo>|. 
+Prima di eseguire un nodo \'{e} necessario, tuttavia, avviare un ROS Master.
 Lo scopo principale di un \textbf{ROS Master} \'{e} quello di consentire ai singoli nodi di localizzarsi a vicenda. Una volta 
-fatto questo, essi potranno comunicare tra loro attraverso topic o service.
-Per far partire un ROS Master sar\'{a} sufficiente eseguire il comando \verb|roscore| in un altro terminale.
+fatto partire, essi potranno comunicare tra loro attraverso topic o service.
+Per eseguire un ROS Master sar\'{a} sufficiente eseguire il comando \verb|roscore| in un altro terminale.

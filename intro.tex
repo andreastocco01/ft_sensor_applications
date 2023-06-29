@@ -1,27 +1,48 @@
 I robot manipolatori hanno rivoluzionato l'automazione industriale, permettendo lo svolgimento
 di operazioni complesse in modo rapido, preciso e sicuro. 
-Uno dei modelli pi\'{u} utilizzato \'{e} l'\textbf{UR5} di \textbf{Universal Robot}. Per via della sua flessibilit\'{a} 
-ed efficienza si \'{e} scelto di utilizzarlo in questo studio. 
+Uno dei modelli pi\'{u} utilizzato \'{e} l'\textbf{UR5} di \textbf{Universal Robot}. Si \'{e} scelto di utilizzarlo in questo studio, 
+per via della sua flessibilit\'{a} ed efficienza. 
 Un ruolo chiave nel controllo di questi robot viene assunto dai sensori coppia-forza,
 che permettono di misurare e regolare la forza esercitata dal robot durante lo svolgimento delle proprie attivit\'{a}. 
-La loro versatilit\'{a} li rende strumenti preziosi in molti campi tra cui: la \textbf{robotica industriale} e la \textbf{medicina}. 
-Essi infatti consentono al robot di controllare la forza esercitata durante le operazioni di assemblaggio, levigatura, 
-saldatura e manipolazione degli oggetti. Vengono inoltre utilizzati nella riabilitazione, per valutare la forza muscolare 
-e i progressi del paziente.
-% aggiungere foto levigatura e riabilitazione
+La loro versatilit\'{a} li rende strumenti preziosi in molti campi della \textbf{robotica industriale} e della \textbf{medicina}. 
+Essi infatti consentono al robot di controllare la forza esercitata durante operazioni di assemblaggio, levigatura, 
+saldatura o manipolazione degli oggetti. 
+Vengono inoltre utilizzati nella riabilitazione fisioterapica, per valutare la forza muscolare 
+e i progressi del paziente. 
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.25\textwidth}
+        \includegraphics[width=\textwidth]{images/polishing.jpg}
+        \caption{Levigatura}
+        \label{fig:polishing}
+    \end{subfigure}
+    ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc. 
+      %(or a blank line to force the subfigure onto a new line)
+    \begin{subfigure}[b]{0.25\textwidth}
+        \includegraphics[width=\textwidth]{images/welding.jpeg}
+        \caption{Saldatura}
+        \label{fig:welding}
+    \end{subfigure}
+    \begin{subfigure}[b]{0.3\textwidth}
+        \includegraphics[width=\textwidth]{images/rehabilitation.png}
+        \caption{Riabilitazione}
+        \label{fig:rehab}
+    \end{subfigure}
+    \caption{Applicazioni dei sensori coppia-forza}\label{fig:indutrial_applications}
+\end{figure}
 Questi sensori sono in grado di convertire le forze e le coppie applicati ad essi in segnali elettrici che possono essere 
 interpretati da altri dispositivi. 
 Esistono varie tipologie di sensori coppia-forza, ognuna delle quali ha un diverso meccanismo di funzionamento. 
-I sensori \textbf{piezoelettrici} sfruttano la propriet\'{a} di alcuni materiali (cristalli piezoelettrici) 
+I sensori \textbf{piezoelettrici}, per esempio, sfruttano la propriet\'{a} di alcuni materiali (cristalli piezoelettrici) 
 di generare una carica elettrica se sottoposti a deformazione meccanica. Tale variazione  
 pu\'{o} essere misurata per determinare la forza o la coppia applicata.
-Il sensore \textbf{FT 300-S} di \textbf{Robotiq} sfrutta questo principio di funzionamento ed \'{e} in grado di misurare 
+Il sensore \textbf{FT 300-S} di \textbf{Robotiq} sfrutta proprio questo principio di funzionamento ed \'{e} in grado di misurare 
 forze e coppie lungo i sei gradi di libert\'{a} (x, y, z, roll, pitch, yaw). 
-\'{E} stato necessario installarlo manualmente sull'UR5 perch\'{e}, a differenza di altri, non possiede sensori 
+Si \'{e} reso necessario installarlo manualmente sull'UR5 perch\'{e}, questo robot, non \'{e} provvisto di sensori 
 coppia-forza integrati. 
 In questa tesi verr\'{a} presentata l'implementazione di un sistema di controllo della forza per l'UR5 utilizzando i dati
 forniti dall'FT 300-S e il framework di sviluppo \textbf{ROS (Robot Operating System)}.
-ROS \'{e} ampiamente utilizzato dalla comunit\'{a} informatica perch\'{e} fornisce strumenti e librerie 
+ROS \'{e} un framework ampiamente utilizzato dalla comunit\'{a} informatica perch\'{e} fornisce strumenti e librerie 
 per il controllo e la comunicazione tra le componenti di un sistema robotico.
 Alcuni test per la valutazione delle prestazioni del sensore in termini di reattivit\'{a} e precisione verranno descritti nel Capitolo 
 \ref{chapter:chapter4}.
