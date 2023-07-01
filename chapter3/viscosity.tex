@@ -1,0 +1,16 @@
+In questa sezione viene mostrato un esperimento per valutare la precisione delle misurazioni del sensore. 
+Per farlo si \'{e} pensato di usare i valori delle forze misurate per calcolare la \textbf{viscosit\'{a}} del burro d'arachidi, 
+che tipicamente \'{e} compresa tra 1500-2500 $\text{Pa} \cdot \text{s}$. 
+A tal proposito \'{e} stato installato sull'UR5 una spatola rettangolare (di dimensioni 6 cm x 4 cm x 4 mm) per effettuare le 
+misurazioni. 
+La spatola viene poi immersa all'interno del burro d'arachidi e comincia una rotazione a velocit\'{a} costante attorno al suo asse.
+Il sensore rileva quindi la forza di attrito viscoso che si oppone alla rotazione della spatola. 
+La formula per il calcolo dell'attrito viscoso \'{e} la seguente
+\begin{equation*}
+    F = 2 \cdot h \cdot l \cdot \eta \cdot \omega
+\end{equation*}
+con h = altezza del rettangolo, l = larghezza del rettangolo, $\eta$ = viscosit\'{a} e $\omega$ = velocit\'{a} angolare. 
+Si pu\'{o} quindi ricavare la formula inversa per calcolare la viscosit\'{a} a partire dalla forza di attrito misurata in questo modo 
+\begin{equation*}
+    \eta = \frac{F}{2 \cdot h \cdot l \cdot \omega}
+\end{equation*}
