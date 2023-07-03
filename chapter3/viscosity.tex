@@ -2,31 +2,35 @@ In questa sezione viene mostrato un esperimento per valutare la precisione delle
 Per farlo si \'{e} pensato di usare i valori delle forze misurate per calcolare la \textbf{viscosit\'{a}} del burro d'arachidi, 
 che tipicamente \'{e} compresa tra 1500-2500 $\text{Pa} \cdot \text{s}$. 
 A tal proposito \'{e} stato installato sull'UR5 una spatola rettangolare (di dimensioni 6 cm x 4 cm x 4 mm) come end effector. 
-La spatola, una volta immersa nel burro di arachidi, verr\'{a} fatta ruotare attorno al suo asse con velocit\'{a} angolare 
-costante. Il sensore, rilever\'{a} quindi un momento torcente lungo l'asse z corrispondente alla forza di attrito viscoso esercitata 
+La spatola, una volta immersa nel burro di arachidi, viene fatta ruotare attorno al suo asse con velocit\'{a} angolare 
+costante. Il sensore, rileva quindi un momento torcente lungo l'asse z corrispondente alla forza di attrito viscoso esercitata 
 dal fluido sulla spatola in rotazione. \'{E} dunque possibile utilizzare tali valori per ricavare sperimentalmente 
 la viscosit\'{a} del burro d'arachidi e confrontarla con i dati ufficiali. 
-In questo caso, la formula per il calcolo dell'attrito viscoso \'{e} la seguente 
+La formula per il calcolo dell'attrito viscoso \'{e} la seguente 
 \begin{equation*}
     F = 2 \cdot h \cdot l \cdot \eta \cdot \omega
 \end{equation*}
 con 
 \begin{itemize}
-    \item h: altezza della spatola immersa nel fluido
+    \item h: altezza della porzione di spatola immersa nel fluido
     \item l: larghezza della spatola
     \item $\eta$: viscosit\'{a} del fluido
     \item $\omega$: velocit\'{a} angolare di rotazione
 \end{itemize}
 Si pu\'{o} quindi `girare' tale formula per ricavare la viscosit\'{a} dalla forza di attrito misurata 
-\begin{equation*}
+\begin{equation} \label{eq:eta}
     \eta = \frac{F}{2 \cdot h \cdot l \cdot \omega}
-\end{equation*}
-In \cite{viscosity} viene mostrato il codice ROS per effettuare l'esperimento.
-Inizialmente il braccio viene mosso con MoveIt in modo tale che la spatola entri dentro al burro d'arachidi. 
-Successivamente viene cambiato il controllore del robot. Per calcolare la viscosit\'{a} del fluido \'{e} necessario conoscere 
-la velocit\'{a} di movimento della spatola. Con un controllore di posizione, tale informazione non \'{e} accessibile. Passando, 
-per\'{o}, ad un controllore di velocit\'{a} quale \verb|twist_controller|, la velocit\'{a} di rotazione pu\'{o} essere impostata 
-a piacere. Il robot, quindi, comincer\'{a} a far ruotare su se stessa la spatola e il sensore acquisir\'{a} i dati dell'attrito 
-viscoso. \'{E} bene notare come la velocit\'{a} di rotazione sia costante, per avere delle misurazioni pi\'{u} uniformi.
-Da tutte le misurazioni effettuate dal sensore viene calcolata la media. Poi viene applicata la formula per determinare la 
-viscosit'{a}. Il risultato \'{e} $\eta = 1998.0468 \text{Pa} \cdot \text{s}$, che rientra nel range specificato inizialmente.
+\end{equation}
+In \cite{viscosity} viene mostrato il codice ROS per effettuare l'esperimento. 
+Con MoveIt il braccio viene prima posizionato in modo tale che la spatola sia immersa all'interno del burro d'arachidi. 
+Come indicato in \ref{eq:eta}, per calcolare la viscosit\'{a} del fluido \'{e} necessario conoscere 
+la velocit\'{a} di rotazione della spatola. Con un controllore di posizione, tale informazione non \'{e} accessibile. 
+Pertanto \'{e} necessario passare ad un controllore di velocit\'{a} (quale \verb|twist_controller|) per poter manovrare il robot in 
+termini di velocit\'{a} e non in termini posizionali. Essendo questa un'operazione effettuata anche nelle applicazioni del 
+Capitolo \ref{chapter:chapter4}, sono state create delle apposite funzioni per il cambio dei controllori nel file \verb|utils.cpp|. 
+Il robot, quindi, comincia a far ruotare su se stessa la spatola a velocit\'{a} costante mentre il sensore acquisisce i dati della 
+forza d'attrito. 
+Viene poi calcolata la media di tutte le misurazioni effettuate (600) e , tale valore, viene usato per calcolare la viscosit\'{a} 
+del burro d'arachidi. 
+Il risultato \'{e} $\eta = 1998.0468$ $\text{Pa} \cdot \text{s}$, che rientra nel range di valori specificato inizialmente. 
+Le misurazioni effettuate dal sensore sono, quindi, precise e affidabili.
