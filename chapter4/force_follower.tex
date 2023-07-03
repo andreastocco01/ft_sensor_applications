@@ -1,0 +1,20 @@
+Questa applicazione si focalizza sulla necessit\'{a} di poter muovere il robot a piacimento, senza dover ricorrere all'utilizzo 
+del teach pendant o RViz. 
+Diventa di fondamentale importanza se integrata in applicazioni collaborative, per rendere pi\'{u} user friendly l'interfacciamento 
+con il robot. 
+Quando il sensore rileva delle forze superiori ad una determinata soglia (calcolata sperimentalmente), viene inviato al robot un 
+comando \verb|Twist| per farlo muovere con una velocit\'{a} proporzionale alla forza applicata in input. In questo modo, il robot `segue' 
+le forze impartite dall'operatore convertendole in termini di velocit\'{a} di movimento. 
+Il codice ROS che implementa tale funzionalit\'{a} viene mostrato in \cite{force_follower}. 
+Dopo aver portato il robot in posizione di partenza con MoveIt, viene attivato \verb|twist_controller| con la stessa funzione 
+utilizzata nell'esperimento del burro d'arachidi (presente in \verb|utils.cpp|). 
+Per il momento non \'{e} necessario focalizzarsi sulla funzione \verb|feedback()|, sul publisher \verb|gripper_publisher| e nemmeno 
+sul vettore \verb|positions|, in quanto sono elementi che verranno utilizzati nell'applicazione \textbf{pick and place}. 
+All'interno del vettore \verb|forces| vengono salvate le ultime 20 misurazioni del sensore. Di queste ne viene calcolata la media 
+e, se il modulo \'{e} superiore alla soglia specificata, viene inviato al robot un comando \verb|Twist| contenente uno scalamento delle 
+forze rilevate nelle tre componenti. Il calcolo della velocit\'{a} di movimento viene fatto sulla media degli ultimi campioni 
+per una questione di utilizzabilit\'{a}. Servirsi delle misurazioni singole per il calcolo del vettore velocit\'{a} da inviare al robot 
+porta ad un movimento poco fluido e impulsivo che peggiora l'esperienza utente. 
+La conversione tra forza e velocit\'{a} avviene mediante un'attenuazione delle componenti del vettore media per un coefficiente 
+costante. Questo per ridurre l'influenza delle forze `piccole' nel vettore velocit\'{a} risultante, valorizzando maggiormente le 
+componenti pi\'{u} ampie. 

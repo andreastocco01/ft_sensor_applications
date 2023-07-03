@@ -1,0 +1,17 @@
+Il pick and place \'{e} un'applicazione largamente utilizzata in ambito industriale e consiste nello spostamento di un oggetto 
+da un punto di partenza ad uno di destinazione. Tale compito pu\'{o} essere portato a termine senza l'ausilio di un sensore 
+coppia-forza. L'alternativa proposta in questa tesi utilizza i dati forniti dal sensore per migliorare l'interfacciamento con il robot 
+e la precisione nel posizionamento dell'oggetto. Per fare ci\'{o} \'{e} stato necessario installare un gripper come end effector 
+dell'UR5 \cite{gripper_repo}. In \cite{environment_setup} con MoveIt Setup Assistant \'{e} stata generata la cartella contenente 
+tutti i file di configurazione per questo specifico setup. 
+% mettere immagine di RViz
+In Figura \ref{fig:boh} viene mostrato l'ambiente di lavoro comprensivo del gripper per la presa degli oggetti. 
+Di seguito verranno descritte le parti in cui \'{e} stata suddivisa l'applicazione.
+\subsection{Salvataggio delle posizioni} 
+In questa prima fase viene utilizzato l'\textbf{inseguitore di forza} per il salvataggio delle posizioni di partenza e di destinazione 
+su cui il robot dovr\'{a} spostarsi per portare a termine il proprio compito. 
+L'operatore potr\'{a}, quindi, muovere il braccio liberamente fino a quando non si trova al di sopra dell'oggetto da spostare. 
+Sar\'{a}, poi, sufficiente applicare una piccola torsione al sensore affinch\'{e} la posizione venga salvata nel vettore 
+\verb|positions|. In caso di successo, il gripper si aprir\'{a} e si chiuder\'{a} velocemente per dare all'utente un feedback visivo. 
+Lo stesso dovr\'{a} essere fatto anche per la posizione di destinazione. Una volta acquisite entrambe le posizioni, queste 
+verranno pubblicate sul topic \verb|task_position|.
