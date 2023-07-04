@@ -1,0 +1,22 @@
+Una possibile variazione del pick and place consiste nel far si che il braccio \textbf{trovi} la cavit\'{a} in cui inserire l'oggetto. 
+In \ref{sub:insertion} si presupponeva che la cavit\'{a} si trovasse al centro del contenitore, in questo modo era possibile, 
+determinandone il centro, inserire precisamente l'oggetto nella posizione corretta. Ovviamente se il foro non si trova al centro, 
+l'inserimento non andr\'{a} a buon fine. Per risolvere questo problema si \'{e} pensato di sostituire la parte di inserimento 
+precedentemente descritta con un nuovo nodo in grado di trovare la posizione del foro \cite{spiral}. 
+Quando il braccio si trova in contatto con il contenitore, comincia ad effettuare un movimento a \textbf{spirale}. 
+Mentre effettua tale movimento, mantiene l'oggetto in contatto con la superficie del contenitore. Se il sensore 
+non rileva pi\'{u} alcuna forza lungo l'asse z, significa che ci si trova in uno dei seguenti casi:
+\begin{itemize}
+    \item il contenitore non ha una superficie piana. Il foro non \'{e} ancora stato trovato e quindi \'{e} necessario far scendere 
+    il braccio per ristabilire il contatto e continuare a cercare.
+    \item il braccio si trova al di sopra del foro. Si pu\'{o} procedere con l'inserimento dell'oggetto.
+\end{itemize} 
+Per implementare questa funzionalit\'{a} si \'{e} pensato di far scendere il braccio ogni qual volta il sensore non rileva pi\'{u}
+una forza lungo l'asse z. Se la differenza di altezza \'{e} superiore ad una determinata soglia, significa che probabilmente si \'{e} 
+trovato il foro e quindi il gripper si aprir\'{a} per favorire l'inserimento dell'oggetto. 
+A differenza della versione mostrata in \ref{sec:pick_place}, questa non raggiunge sempre l'obiettivo. 
+Pu\'{o} capitare, infatti, che il braccio non trovi mai la cavit\'{a} per via dell'incremento del raggio della spirale e che finisca 
+al di l\'{a} dei bordi della scatola. Inoltre, se non si trova perfettamente al di sopra del foro, potrebbe non cominciare la 
+fase di discesa non portando a termine il compito.
+% aggiungere tabella esperimenti
+% mostrare immagine spirale disegnata
