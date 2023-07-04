@@ -13,5 +13,16 @@ su cui il robot dovr\'{a} spostarsi per portare a termine il proprio compito.
 L'operatore potr\'{a}, quindi, muovere il braccio liberamente fino a quando non si trova al di sopra dell'oggetto da spostare. 
 Sar\'{a}, poi, sufficiente applicare una piccola torsione al sensore affinch\'{e} la posizione venga salvata nel vettore 
 \verb|positions|. In caso di successo, il gripper si aprir\'{a} e si chiuder\'{a} velocemente per dare all'utente un feedback visivo. 
-Lo stesso dovr\'{a} essere fatto anche per la posizione di destinazione. Una volta acquisite entrambe le posizioni, queste 
-verranno pubblicate sul topic \verb|task_positions|.
+Lo stesso dovr\'{a} essere fatto anche per la posizione di destinazione e per una posizione fittizia in una zona libera 
+del piano di lavoro (vedi \ref{sub:placement}). Una volta terminata la fase di acquisizione delle posizioni, 
+le prime due verranno pubblicate sul topic \verb|task_positions|.
+\subsection{Posizionamento} \label{sub:placement}
+In questa fase, il nodo \textbf{placement} \cite{placement} potr\'{a} iscriversi al topic e leggere le posizioni precedentemente 
+acquisiste. Inizialmente, dalla posizione fittizia, il robot scender\'{a} verso il basso fino a quando non verr\'{a} rilevata 
+una forza lungo l'asse z, corrispondente al contatto con il piano di lavoro. Tale posizione verr\'{a} salvata e utilizzata in seguito. 
+Con MoveIt il braccio viene spostato alla prima posizione del topic, ossia il punto in cui \'{e} presente l'oggetto da prendere.
+Da qui, si muover\'{a} verso il basso alla ricerca di un contatto con esso e una nuova posizione verr\'{a} salvata. 
+Le differenza delle due posizioni corrisponde all'altezza dell'oggetto. Sar\'{a}, dunque, sufficiente chiudere il gripper 
+nel suo punto medio per favorirne una presa pi\'{u} solida. Ad esempio, se l'oggetto \'{e} alto 10 cm, il gripper verr\'{a} chiuso 
+ad altezza 5 cm. 
+L'UR5, poi, si muover\'{a} nell'altra posizione pubblicata sul topic in attesa di cominciare l'utlima fase dell'applicazione.
