@@ -1,0 +1,16 @@
+Modificando ulteriormente l'inseguitore di forza, come mostrato in \cite{full_force_follower}, si pu\'{o} implementare un'applicazione 
+per il trasposto collaborativo uomo-robot. Rispetto alla versione utilizzata nella Sezione \ref{sec:force_follower} \'{e} stata aggiunta 
+la lettura delle torsioni misurate dal sensore. 
+Ad esempio, nel pick and place, le torsioni lungo l'asse z venivano interpretate come l'input da parte dell'operatore per il salvataggio 
+delle posizioni. In questo caso, invece, quando il sensore misura una torsione, essa viene interpretata come la volont\'{a} 
+dell'operatore di ruotare il pezzo che viene trasportato.
+Allo stesso modo delle forze, viene calcolata la \textbf{velocit\'{a} angolare} 
+con cui far ruotare l'end effector dell'UR5, in modo tale da riuscire a seguire tutte le intenzioni dell'utente. 
+La possibilit\'{a} di rotazione dell'end effector porta, per\'{o}, ad un problema con i sistemi di riferimento. 
+Infatti, \verb|twist_controller|, effettua i movimenti rispetto al sistema di riferimento dell'end effector, ma se esso viene ruotato 
+sar\'{a} necessario cambiare il verso di movimento per seguire correttamente le forze in input. Per ovviare a questo 
+problema, sono state utilizzate le \textbf{trasformazioni geometriche} da un sistema di riferimento ad un altro. 
+Utilizzando la libreria \verb|tf|, \'{e} possibile convertire le coordinate di un punto in un sistema di riferimento, nelle 
+coordinate di un altro sistema di riferimento connesso ad esso. In questo modo \'{e} stato possibile inviare i comandi 
+\verb|Twist| al robot, rispetto ad un sistema di riferimento fisso (quale la base del robot), in modo tale che il vettore velocit\'{a} 
+calcolato non fosse dipendente dall'orientazione dell'end effector. 
