@@ -7,8 +7,8 @@ tutti i file di configurazione per questo specifico setup.
 % mettere immagine di RViz
 In Figura \ref{fig:boh} viene mostrato l'ambiente di lavoro comprensivo del gripper per la presa degli oggetti. 
 Di seguito verranno descritte le parti in cui \'{e} stata suddivisa l'applicazione.
-\subsection{Salvataggio delle posizioni} 
-In questa prima fase viene utilizzato l'\textbf{inseguitore di forza} per il salvataggio delle posizioni di partenza e di destinazione 
+\subsection{Salvataggio delle posizioni} \label{sub:positions}
+Inizialmente, viene utilizzato l'\textbf{inseguitore di forza} per il salvataggio delle posizioni di partenza e di destinazione 
 su cui il robot dovr\'{a} spostarsi per portare a termine il proprio compito. 
 L'operatore potr\'{a}, quindi, muovere il braccio liberamente fino a quando non si trova al di sopra dell'oggetto da spostare. 
 Sar\'{a}, poi, sufficiente applicare una piccola torsione al sensore affinch\'{e} la posizione venga salvata nel vettore 
@@ -25,4 +25,12 @@ Da qui, si muover\'{a} verso il basso alla ricerca di un contatto con esso e una
 Le differenza delle due posizioni corrisponde all'altezza dell'oggetto. Sar\'{a}, dunque, sufficiente chiudere il gripper 
 nel suo punto medio per favorirne una presa pi\'{u} solida. Ad esempio, se l'oggetto \'{e} alto 10 cm, il gripper verr\'{a} chiuso 
 ad altezza 5 cm. 
-L'UR5, poi, si muover\'{a} nell'altra posizione pubblicata sul topic in attesa di cominciare l'utlima fase dell'applicazione.
+L'UR5, poi, si muover\'{a} nell'altra posizione pubblicata sul topic in attesa di cominciare l'ultima fase dell'applicazione.
+\subsection{Inserimento}
+Supponendo di voler inserire l'oggetto in un contenitore avente, al centro, una cavit\'{a} di uguale forma e di dimensioni simili, 
+non sar\'{a} sufficiente utilizzare la posizione acquisita grossolanamente in \ref{sub:positions}, in quanto troppo poco precisa. 
+A tal proposito in \cite{insertion} viene mostrato il codice per calcolare il centro del contenitore (corrispondente al 
+centro della cavit\'{a}) in cui inserire l'oggetto. Utilizzando il controllore di velocit\'{a} il braccio viene fatto muovere 
+finch\'{e} non viene rilevato un contatto con tutti i bordi. Vengono salvate le posizioni di ogni estremit\'{a} e vengono, poi, 
+utilizzate per calcolare il punto esatto in cui inserire l'oggetto. Il robot potr\'{a}, quindi, posizionarsi al di sopra di 
+tali coordinate e cominciare un processo di discesa che lo porter\'{a} ad incastrare l'oggetto precisamente nell'alloggio finale.
