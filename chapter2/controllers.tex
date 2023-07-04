@@ -11,7 +11,7 @@ I controllori segnati in verde sono Read-Only controllers, ossia dei controllori
 robot e lo pubblicano su un topic. Non c'\'{e} nessuna limitazione sul numero di controllori Read-Only in esecuzione 
 nello stesso momento. Gli altri, invece, sono Commanding controllers, ossia controllori che consentono l'alterazione dello 
 stato del robot. Non \'{e} possibile utilizzare pi\'{u} controllori di questo tipo contemporaneamente. 
-MoveIt permette un controllo di tipo \textbf{posizionale}: ossia, internamente, calcola la traiettoria migliore 
+MoveIt permette un controllo di tipo \textbf{posizionale}, ossia, internamente, calcola la traiettoria migliore 
 per andare da un punto di partenza nello spazio ad un punto di arrivo. 
 Una volta calcolata la traiettoria, con l'ausilio di \verb|scaled_pos_joint_traj_controller| 
 vengono modificati i valori dei giunti per consentire al robot di seguire la traiettoria specificata. 

@@ -3,7 +3,7 @@ parler\'{a} di \textbf{MoveIt}.
 MoveIt \'{e} un framework specifico di ROS specializzato nella \textbf{pianificazione del movimento}. Offre un'ampia gamma 
 di strumenti e librerie per la generazione delle traiettorie, la gestione della cinematica, la simulazione e il controllo 
 dei robot. 
-Prima di procedere ulteriormente, \'{e} per\'{o} opportuno fornire una breve introduzione ai file URDF.
+Prima di procedere, \'{e} per\'{o} opportuno fornire una breve introduzione ai file URDF.
 Gli \textbf{URDF (Unified Robot Description Format)} sono dei file basati sul formato XML (eXtensible Markup Language) e 
 costituiscono uno standard per rappresentare la geometria, la cinematica e altre caratteristiche dei robot all'interno di ROS. 
 Grazie a questi file, è possibile definire la gerarchia dei \textbf{link} del robot, specificandone anche informazioni quali  
@@ -20,14 +20,14 @@ anche caratteristiche proprie dell'ambiente, come il tavolo su cui \'{e} montato
 \end{figure}
 In Figura \ref{fig:workcell} viene mostrato l'ambiente di lavoro in cui sono state provate le applicazioni proposte. 
 \textbf{RViz (ROS Visualization)} \'{e} uno strumento di visualizzazione 3D incluso in ROS che, oltre a consentire la visualizzazione 
-dei movimenti del robot all'interno dell'ambiente, offre anche strumenti per interagire direttamente con esso.  
+dei movimenti del robot, offre altri strumenti per interagire con esso.  
 Per semplificare il processo di configurazione e setup del sistema, MoveIt mette a disposizione il \textbf{MoveIt Setup Assistant},  
 un software che fornisce un'interfaccia grafica per permettere agli utenti di generare i file di configurazione necessari 
 all'utilizzo di MoveIt. 
 In \cite{environment_setup} la cartella \verb|ur5_ft_moveit_config| \'{e} stata generata da MoveIt Setup Assistant a partire 
 dal file \verb|ur5_ft.urdf.xacro| (contenente la descrizione dell'ambiente) presente all'interno di \verb|environment_description|. 
-In \verb|environment_manager| sono presenti dei \textbf{launch file} (file XML per l'avvio simultaneo di pi\'{u} nodi e che 
-permettono la definizione e il passaggio di parametri ad essi) che a cascata fanno partire nodi per il collegamento remoto del 
+In \verb|environment_manager| sono presenti dei \textbf{launch file} (file XML per l'avvio simultaneo di pi\'{u} nodi, che 
+permettono la definizione e il passaggio di parametri tra di essi) che a cascata fanno partire nodi per il collegamento remoto del 
 PC al robot, l'avvio di MoveIt e Rviz e l'inizializzazione del sensore. 
 Sar\'{a} dunque sufficiente eseguire il comando \verb|roslaunch environment_manager ur5_ft_load_all| per essere poi in grado di 
 eseguire le applicazioni proposte nel Capitolo \ref{chapter:chapter4}.

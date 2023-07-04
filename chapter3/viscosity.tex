@@ -5,7 +5,7 @@ A tal proposito \'{e} stato installato sull'UR5 una spatola rettangolare (di dim
 La spatola, una volta immersa nel burro di arachidi, viene fatta ruotare attorno al suo asse con velocit\'{a} angolare 
 costante. Il sensore, rileva quindi un momento torcente lungo l'asse z corrispondente alla forza di attrito viscoso esercitata 
 dal fluido sulla spatola in rotazione. \'{E} dunque possibile utilizzare tali valori per ricavare sperimentalmente 
-la viscosit\'{a} del burro d'arachidi e confrontarla con i dati ufficiali. 
+la viscosit\'{a} del burro d'arachidi e confrontarla con i dati ufficiali noti. 
 La formula per il calcolo dell'attrito viscoso \'{e} la seguente 
 \begin{equation*}
     F = 2 \cdot h \cdot l \cdot \eta \cdot \omega
@@ -17,7 +17,7 @@ con
     \item $\eta$: viscosit\'{a} del fluido
     \item $\omega$: velocit\'{a} angolare di rotazione
 \end{itemize}
-Si pu\'{o} quindi `girare' tale formula per ricavare la viscosit\'{a} dalla forza di attrito misurata 
+Si pu\'{o} quindi `ribaltare' tale formula per ricavare la viscosit\'{a} dalla forza di attrito misurata 
 \begin{equation} \label{eq:eta}
     \eta = \frac{F}{2 \cdot h \cdot l \cdot \omega}
 \end{equation}
@@ -26,11 +26,11 @@ Con MoveIt il braccio viene prima posizionato in modo tale che la spatola sia im
 Come indicato in \ref{eq:eta}, per calcolare la viscosit\'{a} del fluido \'{e} necessario conoscere 
 la velocit\'{a} di rotazione della spatola. Con un controllore di posizione, tale informazione non \'{e} accessibile. 
 Pertanto \'{e} necessario passare ad un controllore di velocit\'{a} (quale \verb|twist_controller|) per poter manovrare il robot in 
-termini di velocit\'{a} e non in termini posizionali. Essendo questa un'operazione effettuata anche nelle applicazioni del 
-Capitolo \ref{chapter:chapter4}, sono state create delle apposite funzioni per il cambio dei controllori nel file \verb|utils.cpp|. 
+termini di velocit\'{a} e non in termini di posizione. Essendo questa un'operazione effettuata anche in altre applicazioni (vedi  
+Capitolo \ref{chapter:chapter4}), sono state create delle apposite funzioni per il cambio dei controllori nel file \verb|utils.cpp|. 
 Il robot, quindi, comincia a far ruotare su se stessa la spatola a velocit\'{a} costante mentre il sensore acquisisce i dati della 
 forza d'attrito. 
 Viene poi calcolata la media di tutte le misurazioni effettuate (600) e , tale valore, viene usato per calcolare la viscosit\'{a} 
 del burro d'arachidi. 
-Il risultato \'{e} $\eta = 1998.0468$ $\text{Pa} \cdot \text{s}$, che rientra nel range di valori specificato inizialmente. 
+Il risultato \'{e} $\eta = 1998.0468$ $\text{Pa} \cdot \text{s}$, che rientra nel range di valori noto specificato inizialmente. 
 Le misurazioni effettuate dal sensore sono, quindi, precise e affidabili.
