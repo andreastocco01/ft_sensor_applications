@@ -20,7 +20,7 @@ Per usufruire di tali modalit\'{a} di comunicazione sono state provate due alter
     \item collegamento diretto via USB tra sensore e computer
 \end{itemize}
 
-\section{Collegamento via USB tra sensore e control box e via ethernet tra control box e computer}
+\section{Collegamento via USB tra sensore e control box e via ethernet tra control box e computer} \label{sec:scp}
 \begin{figure}[H]
     \centering
     \includegraphics*[width=0.1\textwidth]{images/ft-cbox-pc.png}
@@ -61,7 +61,8 @@ La control box, riceve tali messaggi e li converte nel formato:
     (Fx, Fy, Fz, Mx, My, Mz)
 \end{verbatim}
 Per rendere disponibili i dati ricevuti agli altri nodi, il driver, dopo averli convertiti in decimale, li pubblica sul 
-topic \verb|sensor_topic| \cite{ft_driver}.
+topic \verb|sensor_topic| \cite{ft_driver}. Tale approccio, per\'{o}, introduce un fenomeno di \textbf{drifting} che verr\'{a} 
+trattato successivamente (vedi \ref{sec:drifting}).
 \section{Collegamento diretto via USB tra sensore e computer}
 \begin{figure}[H]
     \centering
@@ -77,6 +78,6 @@ Viene infatti creato il service \verb|robotiq_ft_sensor_acc| per l'invio di coma
 di azzeramento. Inoltre, viene generato il topic \verb|robotiq_ft_wrench| in cui vengono pubblicate le misurazioni prodotte dal 
 sensore. Quindi, per avere il pieno controllo del sensore, \'{e} sufficiente creare un client per le richieste al service 
 \verb|robotiq_ft_sensor_acc| e un subscriber per leggere i dati presenti sul topic \verb|robotiq_ft_wrench|. 
-A causa della completa integrazione col sensore e della presenza di un fenomeno di \textbf{drifting} (vedi \ref{sec:drifting}), 
+A causa della completa integrazione col sensore e dell'assenza di drifting, 
 si \'{e} scelto di utilizzare questo secondo approccio per gli esperimenti e le applicazioni industriali descritte nei 
 Capitoli \ref{chapter:chapter3} e \ref{chapter:chapter5}.

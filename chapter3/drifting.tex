@@ -7,9 +7,12 @@ pu\'{o} essere causato da diversi fattori, come la temperatura, la stabilit\'{a}
     \label{fig:drifting}
 \end{figure}
 In Figura \ref{fig:drifting} viene mostrato il fenomeno del \textbf{drifting}: ossia quando un sensore nel corso del tempo 
-mostra una deviazione nelle sue letture senza un'effettiva variazione delle condizioni ambientali. 
+mostra una deviazione nelle sue letture senza un'effettiva variazione delle condizioni ambientali. Questo fenomeno si verifica 
+solamente se il sensore viene collegato al PC come indicato nella Sezione \ref{sec:scp}. 
 Si pu\'{o} notare come la forza rilevata dal sensore lungo l'asse z tenda a crescere col passare del tempo, senza che al sensore 
 venga applicata alcuna forza. Gi\'{a} dopo 200 secondi, la forza misurata supera la soglia di confidenza specificata nel manuale 
 entro la quale la misurazione deve essere catalogata come non attendibile.
-Per ovviare a questo problema \'{e} necessario azzerare il sensore periodicamente, in modo che le letture risultino corrette 
-e senza deviazioni.
+Per ovviare a questo problema sarebbe necessario azzerare il sensore periodicamente nel caso in cui si optasse 
+per un collegamento passante per la control box del robot, in modo che le letture risultino corrette e senza deviazioni. 
+Gli esperimenti descritti nel corso di questo capitolo e le applicazioni presenti nel Capitolo \ref{chapter:chapter5}, sono state 
+sviluppate utilizzando un collegamento diretto tra sensore e PC via USB.

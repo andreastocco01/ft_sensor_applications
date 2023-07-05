@@ -2,6 +2,7 @@ In questa sezione viene mostrato un esperimento per valutare la precisione delle
 Per farlo si \'{e} pensato di usare i valori delle forze misurate per calcolare la \textbf{viscosit\'{a}} del burro d'arachidi, 
 che tipicamente \'{e} compresa tra 1500-2500 $\text{Pa} \cdot \text{s}$. 
 A tal proposito \'{e} stato installato sull'UR5 una spatola rettangolare (di dimensioni 6 cm x 4 cm x 4 mm) come end effector. 
+In Figura \ref{boh} viene mostrato il setup per questo esperimento. 
 La spatola, una volta immersa nel burro di arachidi, viene fatta ruotare attorno al suo asse con velocit\'{a} angolare 
 costante. Il sensore, rileva quindi un momento torcente lungo l'asse z corrispondente alla forza di attrito viscoso esercitata 
 dal fluido sulla spatola in rotazione. \'{E} dunque possibile utilizzare tali valori per ricavare sperimentalmente 
@@ -21,6 +22,9 @@ Si pu\'{o} quindi `ribaltare' tale formula per ricavare la viscosit\'{a} dalla f
 \begin{equation} \label{eq:eta}
     \eta = \frac{F}{2 \cdot h \cdot l \cdot \omega}
 \end{equation}
+Utilizzando velocit\'{a} di rotazione e dimensioni della spatola ridotte, la forza d'attrito rilevata dal sensore sar\'{a} in generale piccola. 
+\'{E} stato, dunque, necessario utilizzare un liquido con una viscosit\'{a} elevata per condurre l'esperimento in modo tale 
+che le misurazioni non fossero trascurabili.
 In \cite{viscosity} viene mostrato il codice ROS per effettuare l'esperimento. 
 Con MoveIt il braccio viene prima posizionato in modo tale che la spatola sia immersa all'interno del burro d'arachidi. 
 Come indicato in \ref{eq:eta}, per calcolare la viscosit\'{a} del fluido \'{e} necessario conoscere 
@@ -30,7 +34,7 @@ termini di velocit\'{a} e non in termini di posizione. Essendo questa un'operazi
 Capitolo \ref{chapter:chapter4}), sono state create delle apposite funzioni per il cambio dei controllori nel file \verb|utils.cpp|. 
 Il robot, quindi, comincia a far ruotare su se stessa la spatola a velocit\'{a} costante mentre il sensore acquisisce i dati della 
 forza d'attrito. 
-Viene poi calcolata la media di tutte le misurazioni effettuate (600) e , tale valore, viene usato per calcolare la viscosit\'{a} 
+Viene poi calcolata la media di tutte le misurazioni effettuate (600) e, tale valore, viene usato per calcolare la viscosit\'{a} 
 del burro d'arachidi. 
 Il risultato \'{e} $\eta = 1998.0468$ $\text{Pa} \cdot \text{s}$, che rientra nel range di valori noto specificato inizialmente. 
 Le misurazioni effettuate dal sensore sono, quindi, precise e affidabili.
