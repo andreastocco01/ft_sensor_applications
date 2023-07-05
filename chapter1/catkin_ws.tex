@@ -1,6 +1,9 @@
-Per poter eseguire codice ROS serve un ambiente che permetta l'organizzazione e l'utilizzo di tutti i pacchetti necessari.
+Per poter eseguire codice ROS serve un ambiente che permetta l'organizzazione e l'utilizzo di tutti i pacchetti necessari. 
 Al riguardo, \textbf{catkin} \'{e} il sistema di compilazione ufficiale di ROS che consente la creazione di un workspace per 
-organizzare e gestire le applicazioni.
+organizzare e gestire le applicazioni. 
+Un \textbf{pacchetto} ROS contiene al suo interno codici sorgenti, librerie e dati di configurazione. 
 I termini `pacchetto' e `applicazione' sono interscambiabili e possono essere utilizzati in modo equivalente.
-Una volta creato il workspace catkin \cite{catkin_ws}, il codice sorgente contenuto all'interno dei pacchetti potr\'{a} essere 
+Per creare un pacchetto \'{e} sufficiente eseguire il comando 
+\verb|catkin_create_pkg <nome_pacchetto>| all'interno della cartella \verb|src/| situata nel workspace catkin.
+Una volta creato tale workspace \cite{catkin_ws}, il codice sorgente contenuto all'interno dei pacchetti potr\'{a} essere 
 compilato ed eseguito.
