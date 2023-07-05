@@ -6,15 +6,45 @@ Quando il sensore rileva delle forze superiori ad una determinata soglia (calcol
 comando \verb|Twist| per farlo muovere con una velocit\'{a} proporzionale alla forza applicata in input. In questo modo, il robot `segue' 
 le forze impartite dall'operatore convertendole in termini di velocit\'{a} di movimento. 
 Il codice ROS che implementa tale funzionalit\'{a} viene mostrato in \cite{force_follower}. 
+Di seguito viene riportato lo pseudocodice. 
+\begin{algorithm}[H]
+\caption{Inseguitore di forza}\label{algo:force_follower}
+\begin{algorithmic}[1]
+    \Require $\text{Forze rilevate dal sensore}$
+    \Ensure $\text{Comando Twist}$
+    \State alpha $\gets$ 200
+    \State threshold $\gets$ 5
+    \State forces $\gets$ [ ]
+    \State twist $\gets$ 0
+    %\State valore\_ritornato $\gets$ \textsc{Funzione}\textsc{Prova}(param1, param2)
+    
+    \While{ros::ok()} 
+    \If {$\text{forces.size()} < 20$}
+        \State forces.pushback(force) // riempio il vettore con le prime 20 misurazioni
+    \Else
+        \State forces.erase(forces.begin()) // rimuovo la misurazione meno recente
+        \State forces.pushback(force) // per fare spazio all'ultima rilevata
+        \State meanVal $\gets$ mean(forces)
+        \State moduleVal $\gets$ module(meanVal) 
+        \If {$\text{moduleVal} > threshold$}
+            \State twist $\gets$ moduleVal / alpha // scalo il valore del modulo
+        \Else
+            \State twist $\gets$ 0
+        \EndIf
+        \State publisher.publish(twist)
+    \EndIf
+    \State ros::speedOnce()
+    \EndWhile
+\end{algorithmic}
+\end{algorithm}
 Dopo aver portato il robot in posizione di partenza con MoveIt, viene attivato \verb|twist_controller| con la stessa funzione 
-utilizzata nell'esperimento del burro d'arachidi (presente in \verb|utils.cpp|). 
-Per il momento non \'{e} necessario focalizzarsi sulla funzione \verb|feedback()|, sul publisher \verb|gripper_publisher| e nemmeno 
-sul vettore \verb|positions|, in quanto sono elementi che verranno utilizzati nell'applicazione \textbf{pick and place}. 
+utilizzata nell'esperimento del burro d'arachidi (presente in \verb|utils.cpp|).  
 All'interno del vettore \verb|forces| vengono salvate le ultime 20 misurazioni del sensore. Di queste ne viene calcolata la media 
 e, se il modulo \'{e} superiore alla soglia specificata, viene inviato al robot un comando \verb|Twist| contenente uno scalamento delle 
 forze rilevate nelle tre componenti. Il calcolo della velocit\'{a} di movimento viene fatto sulla media degli ultimi campioni 
 per una questione di utilizzabilit\'{a}. Servirsi delle misurazioni singole per il calcolo del vettore velocit\'{a} da inviare al robot 
-porta ad un movimento poco fluido e impulsivo che peggiora l'esperienza utente. 
+porta ad un movimento poco fluido e impulsivo che peggiora l'esperienza utente. Utilizzando la media, invece, le piccole variazioni 
+di forza generate dall'operatore vengono ammortizzate portando ad una risposta da parte del braccio pi\'{u} naturale.
 La conversione tra forza e velocit\'{a} avviene mediante un'attenuazione delle componenti del vettore media per un coefficiente 
 costante. Questo per ridurre l'influenza delle forze `piccole' nel vettore velocit\'{a} risultante, valorizzando maggiormente le 
 componenti pi\'{u} ampie. 
