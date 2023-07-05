@@ -12,12 +12,6 @@ del robot, definendone i limiti di movimento e le relazioni cinematiche con i li
 Robotiq e Universal Robot mettono a disposizione i file URDF dei propri prodotti. Per ricreare l'ambiente di lavoro presente in 
 laboratorio \'{e} stato necessario `unire' la rappresentazione del robot con quella del sensore in un nuovo file URDF contenente 
 anche caratteristiche proprie dell'ambiente, come il tavolo su cui \'{e} montato il braccio, il piano di lavoro e il muro. 
-\begin{figure}[H]
-    \centering
-    \includegraphics*[width=0.70\textwidth]{images/workcell.png}
-    \caption{Simulazione dell'ambiente di lavoro su RViz}
-    \label{fig:workcell}
-\end{figure}
 In Figura \ref{fig:workcell} viene mostrato l'ambiente di lavoro in cui sono state provate le applicazioni proposte. 
 \textbf{RViz (ROS Visualization)} \'{e} uno strumento di visualizzazione 3D incluso in ROS che, oltre a consentire la visualizzazione 
 dei movimenti del robot, offre altri strumenti per interagire con esso.  
@@ -30,4 +24,10 @@ In \verb|environment_manager| sono presenti dei \textbf{launch file} (file XML p
 permettono la definizione e il passaggio di parametri tra di essi) che a cascata fanno partire nodi per il collegamento remoto del 
 PC al robot, l'avvio di MoveIt e Rviz e l'inizializzazione del sensore. 
 Sar\'{a} dunque sufficiente eseguire il comando \verb|roslaunch environment_manager ur5_ft_load_all| per essere poi in grado di 
-eseguire le applicazioni proposte nel Capitolo \ref{chapter:chapter4}.
+eseguire le applicazioni proposte nel Capitolo \ref{chapter:chapter5}. 
+\begin{figure}[H]
+    \centering
+    \includegraphics*[width=0.70\textwidth]{images/workcell.png}
+    \caption{Simulazione dell'ambiente di lavoro su RViz}
+    \label{fig:workcell}
+\end{figure}

@@ -20,7 +20,7 @@ Per usufruire di tali modalit\'{a} di comunicazione sono state provate due alter
     \item collegamento diretto via USB tra sensore e computer
 \end{itemize}
 
-\subsection{Collegamento via USB tra sensore e control box e via ethernet tra control box e computer}
+\section{Collegamento via USB tra sensore e control box e via ethernet tra control box e computer}
 \begin{figure}[H]
     \centering
     \includegraphics*[width=0.1\textwidth]{images/ft-cbox-pc.png}
@@ -62,7 +62,7 @@ La control box, riceve tali messaggi e li converte nel formato:
 \end{verbatim}
 Per rendere disponibili i dati ricevuti agli altri nodi, il driver, dopo averli convertiti in decimale, li pubblica sul 
 topic \verb|sensor_topic| \cite{ft_driver}.
-\subsection{Collegamento diretto via USB tra sensore e computer}
+\section{Collegamento diretto via USB tra sensore e computer}
 \begin{figure}[H]
     \centering
     \includegraphics*[width=0.1\textwidth]{images/ft-pc.png}
@@ -76,7 +76,7 @@ Il driver consente l'utilizzo di entrambe le modalit\'{a} di comunicazione descr
 Viene infatti creato il service \verb|robotiq_ft_sensor_acc| per l'invio di comandi al sensore come, ad esempio, la richiesta 
 di azzeramento. Inoltre, viene generato il topic \verb|robotiq_ft_wrench| in cui vengono pubblicate le misurazioni prodotte dal 
 sensore. Quindi, per avere il pieno controllo del sensore, \'{e} sufficiente creare un client per le richieste al service 
-\verb|robotiq_ft_sensor_acc| e un subscriber per leggere i dati presenti sul topic \verb|robotiq_ft_wrench|.
-Per gli esperimenti e le applicazioni industriali descritte nel Capitoli \ref{chapter:chapter3} e \ref{chapter:chapter4} si \'{e} 
-scelto di utilizzare questo secondo approccio e quindi di collegare direttamente il sensore al PC via USB.
-
+\verb|robotiq_ft_sensor_acc| e un subscriber per leggere i dati presenti sul topic \verb|robotiq_ft_wrench|. 
+A causa della completa integrazione col sensore e della presenza di un fenomeno di \textbf{drifting} (vedi \ref{sec:drifting}), 
+si \'{e} scelto di utilizzare questo secondo approccio per gli esperimenti e le applicazioni industriali descritte nei 
+Capitoli \ref{chapter:chapter3} e \ref{chapter:chapter5}.
