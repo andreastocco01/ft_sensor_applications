@@ -16,8 +16,35 @@ su cui il robot dovr\'{a} spostarsi per portare a termine il proprio compito.
 L'operatore potr\'{a}, quindi, muovere il braccio liberamente fino a quando non si trova al di sopra dell'oggetto da spostare. 
 \'{E} stata implementata una gesture, che consiste nell'applicazione di una piccola torsione al sensore, 
 per salvare la posizione attuale in cui si trova il robot, corrispondente al punto in cui si trova l'oggetto. Il gripper 
-si aprir\'{a} e si chiuder\'{a} velocemente per 
-indicare che la posizione \'{e} stata salvata correttamente nel vettore \verb|positions|.
+si aprir\'{a} e si chiuder\'{a} velocemente per indicare che la posizione \'{e} stata salvata correttamente nel vettore 
+\verb|positions|. Di seguito viene riportato lo pseudocodice per questa funzionalit\'{a}.
+\begin{algorithm}[H]
+    \caption{Salvataggio posizioni}\label{algo:positions}
+    \begin{algorithmic}[1]
+        \Require $\text{Forze e momenti rilevati dal sensore}$
+        \Ensure $\text{Vettore di posizioni}$
+        \State torqueThreshold $\gets$ 1
+        \State forces $\gets$ [ ]
+        \State positions $\gets$ [ ]
+        
+        \While{ros::ok() \textbf{and} $\text{positions.size()} < 3$} 
+            \If {$\text{forces.size()} < 20$}
+                \State forces.pushback(force) // riempio il vettore con le prime 20 misurazioni
+            \Else
+
+                // codice inseguitore di forza
+                \If{$\text{abs(torque).z} > \text{torqueThreshold}$}
+                    \State positions.pushback(currentPosition)
+                    \State feedback()
+                \EndIf
+                \State twistPublisher.publish(twist)
+            \EndIf
+            \State ros::speedOnce()
+        \EndWhile
+        \State posPublisher.publish(positions[0])
+        \State posPublisher.publish(positions[1])
+    \end{algorithmic}
+    \end{algorithm}
 Lo stesso dovr\'{a} essere fatto anche per la posizione di destinazione e per una posizione fittizia in una zona libera 
 del piano di lavoro (vedi \ref{sub:placement}). Una volta terminata la fase di acquisizione delle posizioni, 
 le prime due verranno pubblicate sul topic \verb|task_positions|.
