@@ -25,4 +25,4 @@ Panoramica generale e definizione dello scopo della tesi (uso dei sensori per ap
 # TODO
 fare foto per riempire i ?? delle immagini citate nel pdf
 rifare l'esperimento di taglio del filo (portare bilancia per pesare il grave) perche' le misurazioni non sono precise. 
-rifare esperimento del burro d'arachidi (provarlo piu' volte e controllare la formula)
+rifare esperimento del burro d'arachidi (provarlo piu' volte e cambiare la formula)
