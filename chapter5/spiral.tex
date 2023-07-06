@@ -12,7 +12,38 @@ non rileva pi\'{u} alcuna forza lungo l'asse z, significa che ci si trova in uno
     \item il braccio si trova al di sopra del foro. Si pu\'{o} procedere con l'inserimento dell'oggetto.
 \end{itemize} 
 Per implementare questa funzionalit\'{a} si \'{e} pensato di far scendere il braccio ogni qual volta il sensore non rileva pi\'{u}
-una forza lungo l'asse z. Se la differenza di altezza \'{e} superiore ad una determinata soglia, significa che probabilmente si \'{e} 
+una forza lungo l'asse z, come mostrato nello pseudocodice qui di seguito. 
+\begin{algorithm}[H]
+    \caption{Movimento a spirale}\label{algo:spiral}
+    \begin{algorithmic}[1]
+        \Require $\text{Forze rilevate dal sensore}$
+        \Ensure $\text{Inserimento dell'oggetto}$
+        \State threshold $\gets$ -8
+        \State lim $\gets$ 0.02
+        \State twist $\gets$ 0
+        \State firstTime $\gets$ true
+        \State height
+        
+        \Repeat 
+            \While{$\text{force.z} > \text{threshold}$}
+                \State twist $\gets$ (0, 0, -0.015) // vado gi\'{u} finch\'{e} non c'\'{e} un contatto
+                \State publish(twist)
+            \EndWhile
+            \State twist $\gets$ 0
+            \State publish(twist) // mi fermo
+            \If{firstTime}
+                \State heigth $\gets$ currentPosition // salvo l'altezza del contenitore
+                \State firstTime $\gets$ false
+            \EndIf
+            \State currentHeight $\gets$ currentPosition
+            \While{$\text{force.z} \leq \text{threshold}$ \textbf{and} $\text{height} - \text{currentHeight} < \text{lim}$}
+
+                // movimento a spirale
+            \EndWhile
+        \Until{$\text{force.z} > \text{threshold}$ \textbf{and} $\text{height} - \text{currentHeight} < \text{lim}$}
+    \end{algorithmic}
+    \end{algorithm}
+Se la differenza di altezza \'{e} superiore ad una determinata soglia, significa che probabilmente si \'{e} 
 trovato il foro e quindi il gripper si aprir\'{a} per favorire l'inserimento dell'oggetto. 
 A differenza della versione mostrata in \ref{sec:pick_place}, questa non raggiunge sempre l'obiettivo. 
 Pu\'{o} capitare, infatti, che il braccio non trovi mai la cavit\'{a} per via dell'incremento del raggio della spirale e che finisca 
