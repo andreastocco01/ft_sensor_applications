@@ -3,6 +3,14 @@ In \ref{sub:insertion} si presupponeva che la cavit\'{a} si trovasse al centro d
 determinandone il centro, inserire precisamente l'oggetto nella posizione corretta. Ovviamente se il foro non si trova al centro, 
 l'inserimento non andr\'{a} a buon fine. Per risolvere questo problema si \'{e} pensato di sostituire la parte di inserimento 
 precedentemente descritta con un nuovo nodo in grado di trovare la posizione del foro \cite{spiral}. 
+In Figura \ref{fig:spiral_pick_place} viene mostrato come, in questo caso, il foro in cui inserire l'oggetto non sia pi\'{u} al centro 
+del contenitore. 
+\begin{figure}[H]
+    \centering
+    \includegraphics*[height=0.45\textwidth]{images/spiral_pick_place.jpg}
+    \caption{Setup pick and place con movimento a spirale}
+    \label{fig:spiral_pick_place}
+\end{figure}
 Quando il braccio si trova in contatto con il contenitore, comincia ad effettuare un movimento a \textbf{spirale}. 
 Mentre effettua tale movimento, mantiene l'oggetto in contatto con la superficie del contenitore. Se il sensore 
 non rileva pi\'{u} alcuna forza lungo l'asse z, significa che ci si trova in uno dei seguenti casi:
@@ -13,6 +21,7 @@ non rileva pi\'{u} alcuna forza lungo l'asse z, significa che ci si trova in uno
 \end{itemize} 
 Per implementare questa funzionalit\'{a} si \'{e} pensato di far scendere il braccio ogni qual volta il sensore non rileva pi\'{u}
 una forza lungo l'asse z, come mostrato nello pseudocodice qui di seguito. 
+\newpage
 \begin{algorithm}[H]
     \caption{Movimento a spirale}\label{algo:spiral}
     \begin{algorithmic}[1]
@@ -48,6 +57,29 @@ trovato il foro e quindi il gripper si aprir\'{a} per favorire l'inserimento del
 A differenza della versione mostrata in \ref{sec:pick_place}, questa non raggiunge sempre l'obiettivo. 
 Pu\'{o} capitare, infatti, che il braccio non trovi mai la cavit\'{a} per via dell'incremento del raggio della spirale e che finisca 
 al di l\'{a} dei bordi della scatola. Inoltre, se non si trova perfettamente al di sopra del foro, potrebbe non cominciare la 
-fase di discesa non portando a termine il compito.
-% aggiungere tabella esperimenti
-% mostrare immagine spirale disegnata
+fase di discesa non portando cos\'{i} a termine il compito. 
+In Figura \ref{fig:spiral_insertion}, il quadrato centrale indica il foro in cui inserire l'oggetto, mentre le croci individuano i 
+punti da cui \'{e} stato fatto partire il movimento a spirale nei vari test effettuati. 
+\begin{figure}[H]
+    \centering
+    \includegraphics*[width=0.65\textwidth]{images/spiral.png}
+    \caption{Test effettuati}
+    \label{fig:spiral_insertion}
+\end{figure}
+Nella tabella vengono mostrati i risultati nei vari casi
+\begin{center}
+    \begin{tabular}{ ||c|c|| } 
+     \hline
+     Test & Esito\\
+     \hline\hline 
+     (1) & \ding{51} \\ 
+     (2) & \ding{51} \\ 
+     (3) & \ding{55} \\ 
+     (4) & \ding{51} \\ 
+     (5) & \ding{55} \\ 
+     \hline
+    \end{tabular}
+\end{center}
+Come gi\'{a} anticipato, con questa applicazione non si ottengono sempre i risultati sperati. In (3) il robot ha cominciato il 
+movimento troppo vicino al bordo del contenitore ed \'{e} andato oltre ad esso. In (5), invece, l'interferenza degli altri fori 
+ha fatto s\'{i} che si incastrasse senza raggiungere l'obiettivo.

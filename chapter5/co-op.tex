@@ -1,4 +1,4 @@
-Modificando ulteriormente l'inseguitore di forza, come mostrato in \cite{full_force_follower}, si pu\'{o} implementare un'applicazione 
+Modificando ulteriormente l'\textit{inseguitore di forza}, come mostrato in \cite{full_force_follower}, si pu\'{o} implementare un'applicazione 
 per il trasposto collaborativo uomo-robot. Rispetto alla versione utilizzata nella Sezione \ref{sec:force_follower} \'{e} stata aggiunta 
 la lettura delle torsioni misurate dal sensore. 
 Ad esempio, nel pick and place, le torsioni lungo l'asse z venivano interpretate come l'input da parte dell'operatore per il salvataggio 
@@ -15,5 +15,18 @@ coordinate di un altro sistema di riferimento connesso ad esso. In questo modo \
 \verb|Twist| al robot, rispetto ad un sistema di riferimento fisso (quale la base del robot), in modo tale che il vettore velocit\'{a} 
 calcolato non fosse dipendente dall'orientazione dell'end effector. 
 In questa applicazione si \'{e} sostituito il gripper con delle ventose collegate ad un compressore che, attraverso la creazione di 
-una forza di aspirazione, permette al robot di sollevare oggetti sottili e fragili come una lamina di carbonio (vedi Figura \ref{boh}). 
-Con l'ausilio dell'inseguitore di forza, si potr\'{a} poi trasportare e ruotare la lamina in collaborazione con il robot.
+una forza di aspirazione, permette al robot di sollevare oggetti sottili e fragili come una lamina di carbonio (vedi Figura \ref{fig:co-op}).
+\begin{figure}[H]
+    \centering
+    \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{images/co-op1.jpg}
+        \label{fig:co-op1}
+    \end{subfigure}
+    \qquad
+    \begin{subfigure}[b]{0.45\textwidth}
+        \includegraphics[width=\textwidth]{images/co-op2.jpg}
+        \label{fig:co-op2}
+    \end{subfigure}
+    \caption{Applicazioni dei sensori coppia-forza}\label{fig:co-op}
+\end{figure}
+Con l'ausilio dell'\textit{inseguitore di forza}, si potr\'{a} poi trasportare e ruotare la lamina in collaborazione con il robot.
