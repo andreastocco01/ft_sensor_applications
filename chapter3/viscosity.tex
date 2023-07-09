@@ -1,4 +1,4 @@
-In questa sezione viene mostrato un esperimento per valutare la precisione delle misurazioni del sensore. 
+In questa sezione viene mostrato un esperimento per valutare la precisione delle misurazioni del sensore\footnotemark{}. 
 Per farlo si \'{e} pensato di usare i momenti angolari misurati per calcolare la \textbf{viscosit\'{a}} del burro d'arachidi, 
 che tipicamente \'{e} compresa tra 150-250 $\text{Pa} \cdot \text{s}$. 
 A tal proposito \'{e} stato installato sull'UR5 un cilindro (di raggio 2cm e altezza 7.5cm) come end effector. 
@@ -32,8 +32,7 @@ Si pu\'{o} quindi `ribaltare' tale formula per ricavare la viscosit\'{a} dalla f
 \end{equation}
 Utilizzando velocit\'{a} di rotazione e dimensioni del cilindro ridotte, la forza d'attrito rilevata dal sensore sar\'{a} in generale 
 piccola. \'{E} stato necessario utilizzare un liquido con una viscosit\'{a} elevata per condurre l'esperimento in modo tale 
-che le misurazioni non fossero minori della sensibilit\'{a} del sensore.
-In \cite{viscosity} viene mostrato il codice ROS per effettuare l'esperimento. 
+che le misurazioni non fossero minori della sensibilit\'{a} del sensore. 
 Con MoveIt il braccio viene prima posizionato in modo tale che il cilindro sia immerso all'interno del burro d'arachidi. 
 Come indicato in \ref{eq:eta}, per calcolare la viscosit\'{a} del fluido \'{e} necessario conoscere 
 la velocit\'{a} di rotazione del cilindro. Con un controllore di posizione, tale informazione non \'{e} accessibile. 
@@ -66,3 +65,4 @@ sarebbe stato necessario riportare il fluido in condizione di riposo al termine 
 state alterate.
 In media, la viscosit\'{a} del burro d'arachidi \'{e} $\eta = 156.494065$ $\text{Pa} \cdot \text{s}$, che rientra nel range di 
 valori noto specificato inizialmente. 
+\footnotetext{\url{https://github.com/andreastocco01/ur5_ft_tasks/blob/main/src/viscosity.cpp}}

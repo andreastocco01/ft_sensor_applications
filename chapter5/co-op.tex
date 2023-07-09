@@ -1,5 +1,5 @@
-Modificando ulteriormente l'\textit{inseguitore di forza}, come mostrato in \cite{full_force_follower}, si pu\'{o} implementare un'applicazione 
-per il trasposto collaborativo uomo-robot. Rispetto alla versione utilizzata nella Sezione \ref{sec:force_follower} \'{e} stata aggiunta 
+Modificando ulteriormente l'\textit{inseguitore di forza} si pu\'{o} implementare un'applicazione 
+per il trasposto collaborativo uomo-robot\footnotemark{}. Rispetto alla versione utilizzata nella Sezione \ref{sec:force_follower} \'{e} stata aggiunta 
 la lettura delle torsioni misurate dal sensore. 
 Ad esempio, nel pick and place, le torsioni lungo l'asse z venivano interpretate come l'input da parte dell'operatore per il salvataggio 
 delle posizioni. In questo caso, invece, quando il sensore misura una torsione, essa viene interpretata come la volont\'{a} 
@@ -29,4 +29,5 @@ una forza di aspirazione, permette al robot di sollevare oggetti sottili e fragi
     \end{subfigure}
     \caption{Applicazioni dei sensori coppia-forza}\label{fig:co-op}
 \end{figure}
-Con l'ausilio dell'\textit{inseguitore di forza}, si potr\'{a} poi trasportare e ruotare la lamina in collaborazione con il robot.
+Con l'ausilio dell'\textit{inseguitore di forza}, si potr\'{a} poi trasportare e ruotare la lamina in collaborazione con il robot. 
+\footnotetext{\url{https://github.com/andreastocco01/ur5_ft_tasks/blob/main/src/full_velocity_force_follower.cpp}}

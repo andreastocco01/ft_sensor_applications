@@ -2,12 +2,14 @@ Una possibile variazione del pick and place consiste nel far si che il braccio \
 In \ref{sub:insertion} si presupponeva che la cavit\'{a} si trovasse al centro del contenitore, in questo modo era possibile, 
 determinandone il centro, inserire precisamente l'oggetto nella posizione corretta. Ovviamente se il foro non si trova al centro, 
 l'inserimento non andr\'{a} a buon fine. Per risolvere questo problema si \'{e} pensato di sostituire la parte di inserimento 
-precedentemente descritta con un nuovo nodo in grado di trovare la posizione del foro \cite{spiral}. 
+precedentemente descritta con un nuovo nodo in grado di trovare la posizione del foro\footnotemark{}. 
 In Figura \ref{fig:spiral_pick_place} viene mostrato come, in questo caso, il foro in cui inserire l'oggetto non sia pi\'{u} al centro 
 del contenitore. 
+\footnotetext{\url{https://github.com/andreastocco01/ur5_ft_tasks/blob/main/src/spiral_movement.cpp}}
+\newpage
 \begin{figure}[H]
     \centering
-    \includegraphics*[height=0.45\textwidth]{images/spiral_pick_place.jpg}
+    \includegraphics*[width=0.35\textwidth]{images/spiral_pick_place.jpg}
     \caption{Setup pick and place con movimento a spirale}
     \label{fig:spiral_pick_place}
 \end{figure}

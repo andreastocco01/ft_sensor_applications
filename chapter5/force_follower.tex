@@ -1,5 +1,5 @@
 Come accennato, questa applicazione si focalizza sulla necessit\'{a} di poter muovere il robot a piacimento, senza dover 
-ricorrere all'utilizzo del teach pendant o RViz. 
+ricorrere all'utilizzo del teach pendant o RViz\footnotemark{}. 
 Diventa di fondamentale importanza se integrata in applicazioni collaborative, per rendere pi\'{u} user friendly l'interfacciamento 
 con il robot. 
 Quando il sensore rileva delle forze superiori ad una determinata soglia (calcolata sperimentalmente), viene inviato al robot un 
@@ -37,13 +37,15 @@ Di seguito viene riportato lo pseudocodice.
     \EndWhile
 \end{algorithmic}
 \end{algorithm}
+\footnotetext{\url{https://github.com/andreastocco01/ur5_ft_tasks/blob/main/src/velocity_force_follower.cpp}}
 Dopo aver portato il robot in posizione di partenza con MoveIt, viene attivato \verb|twist_controller| con la stessa funzione 
 utilizzata nell'esperimento del burro d'arachidi (presente in \verb|utils.cpp|).  
 All'interno del vettore \verb|forces| vengono salvate le ultime 20 misurazioni del sensore. Di queste ne viene calcolata la media 
 e, se il modulo \'{e} superiore alla soglia specificata, viene inviato al robot un comando \verb|Twist| contenente uno scalamento delle 
 forze rilevate nelle tre componenti. Il calcolo della velocit\'{a} di movimento viene fatto sulla media degli ultimi campioni 
 per una questione di utilizzabilit\'{a}. Servirsi delle misurazioni singole per il calcolo del vettore velocit\'{a} da inviare al robot 
-porta ad un movimento poco fluido e impulsivo che peggiora l'esperienza utente. Utilizzando la media, invece, le piccole variazioni 
+porta ad un movimento poco fluido e impulsivo che peggiora l'esperienza utente. 
+Utilizzando la media, invece, le piccole variazioni 
 di forza generate dall'operatore vengono ammortizzate portando ad una risposta da parte del braccio pi\'{u} naturale.
 La conversione tra forza e velocit\'{a} avviene mediante un'attenuazione delle componenti del vettore media per un coefficiente 
 costante. In questo modo si riduce l'influenza delle forze `piccole' nel vettore velocit\'{a} risultante, valorizzando maggiormente le 
