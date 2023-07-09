@@ -9,7 +9,7 @@ viene chiamato \textbf{subscriber}.
 \end{figure}
 Per pubblicare un messaggio su un topic bisogna utilizzare l'apposita funzione \verb|publish()| passandole come parametro 
 il messaggio che vogliamo pubblicare.
-A discapito del nome, questa funzione non pubblica effettivamente il messaggio, ma lo mette in una coda d'attesa (la cui 
+Questa funzione non pubblica effettivamente il messaggio, ma lo mette in una coda d'attesa (la cui 
 dimensione viene specificata quando viene istanziato il publisher).
 Un thread separato si occupa di inviare effettivamente il messaggio al topic per renderlo visibile a tutti i nodi subscriber 
 connessi.

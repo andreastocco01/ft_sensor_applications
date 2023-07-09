@@ -1,4 +1,6 @@
 \input{model/thesis-model.tex}
+\usepackage[backend=biber, style=numeric, defernumbers]{biblatex}
+\addbibresource{bibliography.bib}
 
 \begin{document}
 \begin{titlepage}
@@ -81,5 +83,10 @@
 \input{conclusions.tex} %File in cui verrà scritto il capitolo
 
 \clearpage{\pagestyle{plain}\cleardoublepage}
-\input{bibliography.tex}
+\nocite{quigley2009ros}
+\nocite{yt_tutorial}
+\nocite{moveit_tutorial}
+\nocite{ur5}
+\printbibliography[nottype=online, heading=subbibliography, title=Bibliografia]
+\printbibliography[type=online, heading=subbibliography, title=Sitografia]
 \end{document}
