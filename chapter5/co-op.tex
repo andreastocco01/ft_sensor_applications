@@ -9,7 +9,7 @@ con cui far ruotare l'end effector dell'UR5, in modo tale da riuscire a seguire 
 La possibilit\'{a} di rotazione dell'end effector porta, per\'{o}, ad un problema con i sistemi di riferimento. 
 Infatti, \verb|twist_controller|, effettua i movimenti rispetto al sistema di riferimento dell'end effector, ma se esso viene ruotato 
 sar\'{a} necessario cambiare il verso di movimento per seguire correttamente le forze in input. Per ovviare a questo 
-problema, sono state utilizzate le \textbf{trasformazioni geometriche} da un sistema di riferimento ad un altro. 
+problema, sono state utilizzate le \textbf{trasformazioni geometriche} da un sistema di riferimento ad un altro \cite{foote2013tf}. 
 Utilizzando la libreria \verb|tf|, \'{e} possibile convertire le coordinate di un punto in un sistema di riferimento, nelle 
 coordinate di un altro sistema di riferimento connesso ad esso. In questo modo \'{e} stato possibile inviare i comandi 
 \verb|Twist| al robot, rispetto ad un sistema di riferimento fisso (quale la base del robot), in modo tale che il vettore velocit\'{a} 
