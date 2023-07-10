@@ -16,7 +16,7 @@ per andare da un punto di partenza nello spazio ad un punto di arrivo.
 Una volta calcolata la traiettoria, con l'ausilio di \verb|scaled_pos_joint_traj_controller| 
 vengono modificati i valori dei giunti per consentire al robot di seguire la traiettoria specificata. 
 Nelle applicazioni mostrate nel Capitolo \ref{chapter:chapter4} viene utilizzato anche il controllore di 
-\textbf{velocit\'{a}} \verb|twist_controller|. Questo controllore riceve un comando di \textit{Twist} come input, 
+\textbf{velocit\'{a}} \verb|twist_controller|. Questo controllore riceve un comando di \verb|Twist| come input, 
 che specifica la velocit\'{a} di traslazione e rotazione dell'end effector del robot lungo i sei gradi di libert\'{a}. 
 Il controllore, poi, lo traduce in comandi di controllo per i motori del robot attraverso il calcolo della cinematica inversa.
 Essendo entrambi Commanding controllers, l'utilizzo di uno esclude l'utilizzo 

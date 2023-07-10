@@ -32,12 +32,17 @@ e i progressi del paziente.
     \end{subfigure}
     \caption{Applicazioni dei sensori coppia-forza}\label{fig:industrial_applications}
 \end{figure}
-Questi sensori sono in grado di convertire le forze e le coppie applicate ad essi in segnali elettrici che possono essere 
-interpretati da altri dispositivi \cite{templeman2020multi}. 
+Questi sensori sono in grado di convertire le forze e le coppie applicate in segnali elettrici che possono essere 
+interpretati da altri dispositivi \cite{cao2021six}. 
 Esistono varie tipologie di sensori coppia-forza, ognuna delle quali ha un diverso meccanismo di funzionamento. 
-I sensori \textbf{capacitivi}, per esempio, misurano le variazioni di capacit\'{a} elettrostatica tra le piastre dei condensatori 
-presenti in esso. Tale variazione viene convertita in segnali elettrici per determinare il valore delle forze e dei momenti 
-applicati.
+I sensori \textbf{piezoelettrici}, per esempio, sfruttano la propriet\'{a} di alcuni materiali (cristalli piezoelettrici) di generare 
+una carica elettrica se sottoposti a deformazione meccanica. Tale carica pu\'{o} essere utilizzata per determinare le forze e le coppie 
+applicate. 
+D'altra parte, i sensori \textbf{resistivi} mostrano una variazione di restistenza elettrica in risposta ad 
+una determinata grandezza fisica come la temperatura o la forza.
+Analogamente, i sensori \textbf{capacitivi} misurano le variazioni di capacit\'{a} elettrostatica tra le piastre dei condensatori 
+presenti in esso. Quando una grandezza fisica influisce sulla distanza tra le piastre, si verifica una variazione di capacit\'{a} 
+che pu\'{o} essere misurata ed utilizzata per ricavare le grandezze rilevate dal sensore.
 Il sensore \textbf{FT 300-S} di \textbf{Robotiq} sfrutta proprio questo principio di funzionamento ed \'{e} in grado di misurare 
 forze e coppie lungo i sei gradi di libert\'{a} (x, y, z, roll, pitch, yaw). 
 Uno dei modelli di robot mainipolatori pi\'{u} utilizzato \'{e} l'\textbf{UR5} di \textbf{Universal Robot}. Si \'{e} scelto di 
@@ -47,10 +52,15 @@ installare l'FT 300-S manualmente.
 In questa tesi verr\'{a} presentata l'implementazione di un sistema di controllo della forza per l'UR5 utilizzando i dati
 forniti dall'FT 300-S e il framework di sviluppo \textbf{ROS (Robot Operating System)}.
 ROS \'{e} un framework ampiamente utilizzato dalla comunit\'{a} informatica perch\'{e} fornisce strumenti e librerie 
-per il controllo e la comunicazione tra le componenti di un sistema robotico. Inizialmente verr\'{a} presentata una panoramica 
+per il controllo e la comunicazione tra le componenti di un sistema robotico. 
+Inizialmente verr\'{a} presentata una panoramica 
 sui concetti fondamentali di ROS e sul sensore coppia-forza, mostrando anche due diverse modalit\'{a} di interfacciamento con esso 
 (vedi Capitoli \ref{chapter:chapter1} e \ref{chapter:chapter2}).
 Nel Capitolo \ref{chapter:chapter3} verr\'{a}, invece, riportata un'analisi per la valutazione delle prestazioni del sensore in termini di 
 reattivit\'{a} e precisione. Infine, sar\'{a} presentato il setup sperimentale (vedi Capitolo \ref{chapter:chapter4}) necessario 
 allo svolgimento delle applicazioni presentate nel Capitolo \ref{chapter:chapter5} volte a dimostrare l'efficacia
-di tali sensori per lo svolgimento di attivit\'{a} industriali, come il \textbf{pick and place} e il \textbf{trasporto collaborativo}.
+di tali sensori per lo svolgimento di attivit\'{a} industriali, come il \textbf{pick and place} ed il \textbf{trasporto collaborativo}. 
+Si evidenzia che quest'ultimo \'{e} tra le applicazioni pi\'{u} sfidanti in questo ambito ed \'{e} tutt'ora oggetto di ricerca scientifica. 
+Per esempio, in \cite{de2021towards}, viene mostrato come l'utilizzo di un robot mobile dotato 
+di un sensore coppia-forza combinato ad una telecamera 2D in grado di riconoscere lo scheletro di un operatore umano, possa 
+aumentare la versatilit\'{a} e l'efficienza della co-manipolazione uomo-robot.

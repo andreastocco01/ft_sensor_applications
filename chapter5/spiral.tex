@@ -4,7 +4,7 @@ determinandone il centro, inserire precisamente l'oggetto nella posizione corret
 l'inserimento non andr\'{a} a buon fine. Per risolvere questo problema si \'{e} pensato di sostituire la parte di inserimento 
 precedentemente descritta con un nuovo nodo in grado di trovare la posizione del foro\footnotemark{}. 
 In Figura \ref{fig:spiral_pick_place} viene mostrato come, in questo caso, il foro in cui inserire l'oggetto non sia pi\'{u} al centro 
-del contenitore. 
+del contenitore, bens\'{i} in basso a destra. 
 \footnotetext{\url{https://github.com/andreastocco01/ur5_ft_tasks/blob/main/src/spiral_movement.cpp}}
 \newpage
 \begin{figure}[H]
@@ -13,7 +13,9 @@ del contenitore.
     \caption{Setup pick and place con movimento a spirale}
     \label{fig:spiral_pick_place}
 \end{figure}
-Quando il braccio si trova in contatto con il contenitore, comincia ad effettuare un movimento a \textbf{spirale}. 
+Per la ricerca dell'esatta posizione del foro, si assume nota una posizione grossolana da cui partire. 
+Il braccio è quindi portato in tale posizione e fatto scendere fino al contatto con il contenitore.
+Da qui il robot, comincia ad effettuare un movimento a \textbf{spirale}. 
 Mentre effettua tale movimento, mantiene l'oggetto in contatto con la superficie del contenitore. Se il sensore 
 non rileva pi\'{u} alcuna forza lungo l'asse z, significa che ci si trova in uno dei seguenti casi:
 \begin{itemize}
@@ -22,7 +24,7 @@ non rileva pi\'{u} alcuna forza lungo l'asse z, significa che ci si trova in uno
     \item il braccio si trova al di sopra del foro. Si pu\'{o} procedere con l'inserimento dell'oggetto.
 \end{itemize} 
 Per implementare questa funzionalit\'{a} si \'{e} pensato di far scendere il braccio ogni qual volta il sensore non rileva pi\'{u}
-una forza lungo l'asse z, come mostrato nello pseudocodice qui di seguito. 
+una forza lungo l'asse z, come mostrato in Algorithm \ref{algo:spiral}. 
 \newpage
 \begin{algorithm}[H]
     \caption{Movimento a spirale}\label{algo:spiral}

@@ -10,7 +10,8 @@ In Figura \ref{fig:pick_place} viene mostrato l'ambiente di lavoro comprensivo d
 \begin{figure}[H]
     \centering
     \includegraphics*[width=0.65\textwidth]{images/pick_place_setup.jpg}
-    \caption{Setup applicazione pick and place}
+    \caption{Setup sperimentale dell'applicazione pick and place. L'obiettivo \'{e} inserire gli oggetti sul tavolo 
+    all'interno della scatola}
     \label{fig:pick_place}
 \end{figure}
 Inizialmente il robot apprende il punto di partenza e di destinazione dall'operatore, poi, una volta preso l'oggetto, 
@@ -23,7 +24,7 @@ L'operatore potr\'{a}, quindi, muovere il braccio liberamente fino a quando non 
 \'{E} stata implementata una gesture che consiste nell'applicazione di una piccola torsione al sensore, 
 per salvare la posizione attuale in cui si trova il robot, corrispondente al punto in cui si trova l'oggetto. Il gripper 
 si aprir\'{a} e si chiuder\'{a} velocemente per indicare che la posizione \'{e} stata salvata correttamente nel vettore 
-\verb|positions|. Di seguito viene riportato lo pseudocodice per questa funzionalit\'{a}.
+\verb|positions|. In Algorithm \ref{algo:positions} viene riportato lo pseudocodice per questa funzionalit\'{a}.
 \begin{algorithm}[H]
     \caption{Salvataggio posizioni}\label{algo:positions}
     \begin{algorithmic}[1]
@@ -51,26 +52,31 @@ si aprir\'{a} e si chiuder\'{a} velocemente per indicare che la posizione \'{e} 
         \State posPublisher.publish(positions[1])
     \end{algorithmic}
     \end{algorithm}
-Lo stesso dovr\'{a} essere fatto anche per la posizione di destinazione e per una posizione fittizia in una zona libera 
-del piano di lavoro (vedi \ref{sub:placement}). Una volta terminata la fase di acquisizione delle posizioni, 
+Lo stesso dovr\'{a} essere fatto anche per la posizione di destinazione e per una posizione ausiliaria in una zona libera 
+del piano di lavoro, che verr\'{a} utilizzata per determinare l'altezza del tavolo (vedi \ref{sub:placement}). 
+Una volta terminata la fase di acquisizione delle posizioni, 
 le prime due verranno pubblicate sul topic \verb|task_positions|.
 \subsection{Posizionamento} \label{sub:placement}
-In questa fase, il nodo \textbf{placement}\footnotemark{} potr\'{a} iscriversi al topic e leggere le posizioni precedentemente 
-acquisiste. Inizialmente, dalla posizione fittizia, il robot scender\'{a} verso il basso fino a quando non verr\'{a} rilevata 
-una forza lungo l'asse z, corrispondente al contatto con il piano di lavoro. Tale posizione verr\'{a} salvata e utilizzata in seguito. 
+In questa fase, il nodo \textbf{placement}\footnotemark{} potr\'{a} iscriversi al topic \verb|task_positions| e leggere le posizioni precedentemente 
+acquisiste. Inizialmente, dalla posizione ausiliaria, il robot scender\'{a} verso il basso fino a quando non verr\'{a} rilevata 
+una forza lungo l'asse z, corrispondente al contatto con il piano di lavoro. Tale posizione verr\'{a} salvata e utilizzata in seguito 
+come valore di riferimento per il calcolo dell'altezza degli oggetti. 
 Con MoveIt il braccio viene spostato alla prima posizione del topic, ossia il punto in cui \'{e} presente l'oggetto da prendere.
 Da qui, si muover\'{a} verso il basso alla ricerca di un contatto con esso e una nuova posizione verr\'{a} salvata. 
 Le differenza delle due posizioni corrisponde all'altezza dell'oggetto. Sar\'{a}, dunque, sufficiente chiudere il gripper 
 nel suo punto medio per favorirne una presa pi\'{u} solida. Ad esempio, se l'oggetto \'{e} alto 10 cm, il gripper verr\'{a} chiuso 
-ad altezza 5 cm. 
-L'UR5, poi, si muover\'{a} nell'altra posizione pubblicata sul topic in attesa di cominciare l'ultima fase dell'applicazione.
+ad un'altezza di 5 cm. 
+L'UR5, poi, si muover\'{a} nell'altra posizione pubblicata sul topic, ovvero quella di destinazione, 
+in attesa di cominciare l'ultima fase dell'applicazione.
 \footnotetext{\url{https://github.com/andreastocco01/ur5_ft_tasks/blob/main/src/placement.cpp}}
 \subsection{Inserimento} \label{sub:insertion}
 Supponendo di voler inserire l'oggetto in un contenitore avente, al centro, una cavit\'{a} di uguale forma e di dimensioni simili, 
-non sar\'{a} sufficiente utilizzare la posizione acquisita grossolanamente in \ref{sub:positions}, in quanto troppo poco precisa. 
+non sar\'{a} sufficiente utilizzare la posizione acquisita grossolanamente in \ref{sub:positions}, in quanto troppo poco precisa 
+per l'inserimento di oggetti in cavit\'{a} con tolleranze molto strette. 
 A tal proposito viene mostrato il codice per calcolare il centro del contenitore (corrispondente al 
-centro della cavit\'{a}) in cui inserire l'oggetto\footnotemark{}. Utilizzando il controllore di velocit\'{a} il braccio viene fatto muovere 
-finch\'{e} non viene rilevato un contatto con tutti i bordi. Vengono salvate le posizioni di ogni estremit\'{a} e vengono, poi, 
+centro della cavit\'{a}) in cui inserire l'oggetto\footnotemark{}. Utilizzando il controllore di velocit\'{a} il braccio viene fatto 
+muovere da varie posizioni attorno al contenitore verso il contenitore stesso, fino a quando non viene rilevato un contatto con uno 
+dei bordi. Il processo viene ripetuto per ciascuno dei quattro bordi e le posizioni di ogni estremit\'{a} vengono salvate per poi essere
 utilizzate per calcolare il punto esatto in cui inserire l'oggetto. Il robot potr\'{a}, quindi, posizionarsi al di sopra di 
 tali coordinate e cominciare un processo di discesa che lo porter\'{a} ad inserire l'oggetto precisamente nell'alloggiamento finale, 
 come mostrato in Figura \ref{fig:insertion}. 
@@ -79,6 +85,6 @@ come mostrato in Figura \ref{fig:insertion}.
 \begin{figure}[H]
     \centering
     \includegraphics*[width=0.65\textwidth]{images/insertion.jpg}
-    \caption{Fase di inserimento}
+    \caption{Applicazione pick and place: fase di inserimento dell'oggetto (stella) nella cavità corretta}
     \label{fig:insertion}
 \end{figure}
