@@ -6,7 +6,8 @@ Per fare ci\`{o} si \`{e} reso necessario installare un gripper come end effecto
 dell'UR5 \cite{gripper_repo}. In \cite{environment_setup} con MoveIt Setup Assistant \`{e} stata generata la cartella contenente 
 tutti i file di configurazione per questo specifico setup. 
 % mettere immagine di RViz
-In Figura \ref{fig:pick_place} viene mostrato l'ambiente di lavoro comprensivo del gripper per la presa degli oggetti. 
+In Figura \ref{fig:pick_place} viene mostrato l'ambiente di lavoro comprensivo del gripper per la presa degli oggetti.
+\newpage 
 \begin{figure}[H]
     \centering
     \includegraphics*[width=0.65\textwidth]{images/pick_place_setup.jpg}
@@ -25,6 +26,7 @@ L'operatore potr\`{a}, quindi, muovere il braccio liberamente fino a quando non 
 per salvare la posizione attuale in cui si trova il robot, corrispondente al punto in cui si trova l'oggetto. Il gripper 
 si aprir\`{a} e si chiuder\`{a} velocemente per indicare che la posizione \`{e} stata salvata correttamente nel vettore 
 \verb|positions|. In Algorithm \ref{algo:positions} viene riportato lo pseudocodice per questa funzionalit\`{a}.
+\newpage
 \begin{algorithm}[H]
     \caption{Salvataggio posizioni}\label{algo:positions}
     \begin{algorithmic}[1]
