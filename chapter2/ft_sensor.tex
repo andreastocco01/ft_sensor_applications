@@ -8,7 +8,7 @@ dell'UR5 e collegato alla control box tramite il proprio cavo di alimentazione.
 \end{figure}
 \`{E} importante notare come la sua presenza non precluda la possibilit\`{a} di installazione anche di un end effector, 
 che pu\`{o} essere facilmente posizionato `al di sopra' del sensore. 
-L'FT 300-S \`{e} in grado di rilevare forze e torsioni nel range di, rispettivamente, $\pm 300 N$ e $\pm 30 Nm$. 
+L'FT 300-S \`{e} in grado di rilevare forze e torsioni nel range di, rispettivamente, $\pm 300 \, \text{N}$ e $\pm 30 \, \text{N} \cdot \text{m}$. 
 \begin{figure}[H]
     \centering
     \includegraphics*[width=0.35\textwidth]{images/ft_axes.jpg}
@@ -45,7 +45,7 @@ Con la configurazione mostrata in Figura \ref{fig:ft-cbox-pc}, per poter leggere
 necessario sviluppare un \textbf{driver}. 
 Poi si \`{e} stabilita una connessione di rete tramite un \textbf{socket} collegato all'indirizzo IP del robot, 
 alla porta \textbf{63351}. 
-Su tale porta il sensore invier\`{a} un flusso continuo di messaggi ad una frequenza di 100Hz \cite{ft_sensor}. 
+Su tale porta il sensore invier\`{a} un flusso continuo di messaggi ad una frequenza di $100 \, \text{Hz}$ \cite{ft_sensor}. 
 Come da manuale, i messaggi sono lunghi 16 byte e hanno la seguente struttura: 
 \begin{verbatim}
     buff[0] = 0x20

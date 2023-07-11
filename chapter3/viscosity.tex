@@ -1,11 +1,10 @@
 In questa sezione viene mostrato un esperimento per valutare la precisione delle misurazioni del sensore\footnotemark{}. 
 Per farlo si \`{e} pensato di usare i momenti angolari misurati dal sensore per calcolare la \textbf{viscosit\`{a}} del burro 
-d'arachidi e confrontarla con il valore ufficiale noto (150-250 $\text{Pa} \cdot \text{s}$). 
-A tal proposito \`{e} stato installato sull'UR5 un cilindro (di raggio 2cm e altezza 7.5cm) come end effector. 
+d'arachidi e confrontarla con il valore ufficiale noto ($150-250 \, \text{Pa} \cdot \text{s}$). 
+A tal proposito \`{e} stato installato sull'UR5 un cilindro (di raggio $2 \, \text{cm}$ e altezza $7.5 \, \text{cm}$) come end effector. 
 Si \`{e} scelto di utilizzare un tool con questa forma per agevolare la determinazione della formula dell'attrito viscoso agente 
 in questo caso.
 In Figura \ref{fig:peanut_butter} viene mostrato il setup per questo esperimento. 
-\newpage
 \begin{figure}[H]
     \centering
     \includegraphics*[width=0.45\textwidth]{images/setup_viscosity.jpg}
@@ -43,7 +42,7 @@ la velocit\`{a} di rotazione del cilindro. Con un controllore di posizione, tale
 Pertanto \`{e} necessario passare ad un controllore di velocit\`{a} (quale \verb|twist_controller|) per poter manovrare il robot in 
 termini di velocit\`{a} e non in termini di posizione. Essendo questa un'operazione effettuata anche in altre applicazioni (vedi  
 Capitolo \ref{chapter:chapter4}), sono state create delle apposite funzioni per il cambio dei controllori nel file \verb|utils.cpp|. 
-Il robot, quindi, comincia a far ruotare su se stesso il cilindro a velocit\`{a} costante ($0.8 \frac{\text{rad}}{\text{s}}$) mentre 
+Il robot, quindi, comincia a far ruotare su se stesso il cilindro a velocit\`{a} costante ($0.8 \, \frac{\text{rad}}{\text{s}}$) mentre 
 il sensore acquisisce i dati della forza d'attrito. 
 Viene poi calcolata la media di tutte le misurazioni effettuate (600) e, tale valore, viene usato per calcolare la viscosit\`{a} 
 del burro d'arachidi. 
@@ -67,6 +66,6 @@ cambiano durante ogni esperimento (aumento della temperatura per via dello sfreg
 sarebbe stato necessario riportare il fluido in condizione di riposo al termine di ogni misurazione. Il risultato pi\`{u} affidabile 
 \`{e} il primo, in quanto \`{e} stato effettuato quando le propriet\`{a} fisiche del burro d'arachidi non erano ancora 
 state alterate.
-In media, la viscosit\`{a} del burro d'arachidi \`{e} $\eta = 156.494065$ $\text{Pa} \cdot \text{s}$, che rientra nel range di 
+In media, la viscosit\`{a} del burro d'arachidi \`{e} $\eta = 156.494065 \, \text{Pa} \cdot \text{s}$, che rientra nel range di 
 valori noto specificato inizialmente. 
 \footnotetext{\url{https://github.com/andreastocco01/ur5_ft_tasks/blob/main/src/viscosity.cpp}}
