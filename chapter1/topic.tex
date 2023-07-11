@@ -13,15 +13,15 @@ Questa funzione non pubblica effettivamente il messaggio, ma lo mette in una cod
 dimensione viene specificata quando viene istanziato il publisher).
 Un thread separato si occupa di inviare effettivamente il messaggio al topic per renderlo visibile a tutti i nodi subscriber 
 connessi.
-Se il numero di messaggi in coda supera la sua dimensione, i messaggi pi\'{u} vecchi verranno cancellati per fare spazio 
-a quelli pi\'{u} recenti. Quando arriva un nuovo messaggio al subscriber, esso viene salvato 
-in una coda d'attesa (stesso funzionamento di quella del publisher) fino a quando ROS non d\'{a} la possibilit\'{a} al nodo 
-di eseguire la funzione di callback. Tale funzione \'{e} definita dall'utente e si occupa di processare il messaggio ricevuto. 
-ROS eseguir\'{a} una callback solo quando gli verr\'{a} dato il permesso di farlo. Ci sono due modi per farlo:
+Se il numero di messaggi in coda supera la sua dimensione, i messaggi pi\`{u} vecchi verranno cancellati per fare spazio 
+a quelli pi\`{u} recenti. Quando arriva un nuovo messaggio al subscriber, esso viene salvato 
+in una coda d'attesa (stesso funzionamento di quella del publisher) fino a quando ROS non d\`{a} la possibilit\`{a} al nodo 
+di eseguire la funzione di callback. Tale funzione \`{e} definita dall'utente e si occupa di processare il messaggio ricevuto. 
+ROS eseguir\`{a} una callback solo quando gli verr\`{a} dato il permesso di farlo. Ci sono due modi per farlo:
 \begin{itemize}
     \item \verb|ros::spinOnce()| chiede a ROS di eseguire tutte le callback in sospeso restituendo poi il controllo all'utente
     \item \verb|ros::spin()| chiede a ROS di attendere e di eseguire tutte le callback in sospeso fino a quando il nodo non 
-          viene spento. \'{E} equivalente a:
+          viene spento. \`{E} equivalente a:
           \begin{verbatim}
             while (ros::ok()) {
                 ros::spinOnce();
@@ -35,4 +35,4 @@ ROS eseguir\'{a} una callback solo quando gli verr\'{a} dato il permesso di farl
           \end{itemize}
 \end{itemize}
 In altre parole \verb|ros::spin()| vincola il nodo a rimanere sempre e solo in attesa di leggere nuovi messaggi. 
-Se il nodo non deve solamente eseguire le callback, allora un loop con \verb|ros::spinOnce()| \'{e} la scelta corretta. 
+Se il nodo non deve solamente eseguire le callback, allora un loop con \verb|ros::spinOnce()| \`{e} la scelta corretta. 

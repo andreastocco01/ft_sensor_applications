@@ -1,7 +1,7 @@
-I \textbf{service} sono un'altra modalit\'{a} di comunicazione tra nodi. A differenza dei topic, che consentono la comunicazione 
+I \textbf{service} sono un'altra modalit\`{a} di comunicazione tra nodi. A differenza dei topic, che consentono la comunicazione 
 asincrona, i service instaurano una comunicazione di tipo `client-server'. Il nodo \textbf{client} invia una richiesta al nodo service e 
 attende la sua risposta prima di andare avanti con l'esecuzione. 
-Per implementare un service in ROS \'{e} necessario per prima cosa definire la struttura dei messaggi di richiesta e 
-risposta \cite{service}. Successivamente il client potr\'{a} creare una richiesta nel formato specificato e inviarla al nodo service  
+Per implementare un service in ROS \`{e} necessario per prima cosa definire la struttura dei messaggi di richiesta e 
+risposta \cite{service}. Successivamente il client potr\`{a} creare una richiesta nel formato specificato e inviarla al nodo service  
 come parametro della funzione \verb|call()|. 
-Il nodo service elaborer\'{a} quindi la richiesta fornendo una risposta al client.
+Il nodo service elaborer\`{a} quindi la richiesta fornendo una risposta al client.

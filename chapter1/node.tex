@@ -1,12 +1,12 @@
-Un \textbf{nodo} \'{e} un eseguibile che sfrutta ROS per comunicare con altri nodi. 
+Un \textbf{nodo} \`{e} un eseguibile che sfrutta ROS per comunicare con altri nodi. 
 A ciascuno di tali eseguibili corrispondono dei file sorgente che, raggruppati in pacchetti, consentono la realizzazione di 
 funzionalità comuni (ad esempio un pacchetto con i nodi relativi all'interfacciamento a basso livello col sensore coppia-forza).
 Quando viene lanciato il comando \verb|catkin_make|, ogni file sorgente in ogni pacchetto viene compilato 
 dando origine ad un nodo.
-Impropriamente, si potrebbe quindi dire che un pacchetto \'{e} un insieme di nodi riguardanti la stessa applicazione.
-Per poter eseguire un nodo \'{e} sufficiente eseguire il comando \\
+Impropriamente, si potrebbe quindi dire che un pacchetto \`{e} un insieme di nodi riguardanti la stessa applicazione.
+Per poter eseguire un nodo \`{e} sufficiente eseguire il comando \\
 \verb|rosrun <nome_pacchetto> <nome_nodo>|. 
-Prima di eseguirne uno \'{e} necessario, tuttavia, avviare un ROS Master.
-Lo scopo principale di un \textbf{ROS Master} \'{e} quello di consentire ai singoli nodi di localizzarsi a vicenda. Una volta 
+Prima di eseguirne uno \`{e} necessario, tuttavia, avviare un ROS Master.
+Lo scopo principale di un \textbf{ROS Master} \`{e} quello di consentire ai singoli nodi di localizzarsi a vicenda. Una volta 
 fatto partire, essi potranno comunicare tra loro attraverso topic o service.
-Per eseguire un ROS Master sar\'{a} sufficiente eseguire il comando \verb|roscore| in un altro terminale.
+Per eseguire un ROS Master sar\`{a} sufficiente eseguire il comando \verb|roscore| in un altro terminale.

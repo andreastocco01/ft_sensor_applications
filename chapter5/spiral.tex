@@ -1,10 +1,10 @@
-Una possibile variazione del pick and place consiste nel far si che il braccio \textbf{trovi} la cavit\'{a} in cui inserire l'oggetto. 
-In \ref{sub:insertion} si presupponeva che la cavit\'{a} si trovasse al centro del contenitore, in questo modo era possibile, 
+Una possibile variazione del pick and place consiste nel far si che il braccio \textbf{trovi} la cavit\`{a} in cui inserire l'oggetto. 
+In \ref{sub:insertion} si presupponeva che la cavit\`{a} si trovasse al centro del contenitore, in questo modo era possibile, 
 determinandone il centro, inserire precisamente l'oggetto nella posizione corretta. Ovviamente se il foro non si trova al centro, 
-l'inserimento non andr\'{a} a buon fine. Per risolvere questo problema si \'{e} pensato di sostituire la parte di inserimento 
+l'inserimento non andr\`{a} a buon fine. Per risolvere questo problema si \`{e} pensato di sostituire la parte di inserimento 
 precedentemente descritta con un nuovo nodo in grado di trovare la posizione del foro\footnotemark{}. 
-In Figura \ref{fig:spiral_pick_place} viene mostrato come, in questo caso, il foro in cui inserire l'oggetto non sia pi\'{u} al centro 
-del contenitore, bens\'{i} in basso a destra. 
+In Figura \ref{fig:spiral_pick_place} viene mostrato come, in questo caso, il foro in cui inserire l'oggetto non sia pi\`{u} al centro 
+del contenitore, bens\`{i} in basso a destra. 
 \footnotetext{\url{https://github.com/andreastocco01/ur5_ft_tasks/blob/main/src/spiral_movement.cpp}}
 \newpage
 \begin{figure}[H]
@@ -17,13 +17,13 @@ Per la ricerca dell'esatta posizione del foro, si assume nota una posizione gros
 Il braccio è quindi portato in tale posizione e fatto scendere fino al contatto con il contenitore.
 Da qui il robot, comincia ad effettuare un movimento a \textbf{spirale}. 
 Mentre effettua tale movimento, mantiene l'oggetto in contatto con la superficie del contenitore. Se il sensore 
-non rileva pi\'{u} alcuna forza lungo l'asse z, significa che ci si trova in uno dei seguenti casi:
+non rileva pi\`{u} alcuna forza lungo l'asse z, significa che ci si trova in uno dei seguenti casi:
 \begin{itemize}
-    \item il contenitore non ha una superficie piana. Il foro non \'{e} ancora stato trovato e quindi \'{e} necessario far scendere 
+    \item il contenitore non ha una superficie piana. Il foro non \`{e} ancora stato trovato e quindi \`{e} necessario far scendere 
     il braccio per ristabilire il contatto e continuare a cercare.
-    \item il braccio si trova al di sopra del foro. Si pu\'{o} procedere con l'inserimento dell'oggetto.
+    \item il braccio si trova al di sopra del foro. Si pu\`{o} procedere con l'inserimento dell'oggetto.
 \end{itemize} 
-Per implementare questa funzionalit\'{a} si \'{e} pensato di far scendere il braccio ogni qual volta il sensore non rileva pi\'{u}
+Per implementare questa funzionalit\`{a} si \`{e} pensato di far scendere il braccio ogni qual volta il sensore non rileva pi\`{u}
 una forza lungo l'asse z, come mostrato in Algorithm \ref{algo:spiral}. 
 \newpage
 \begin{algorithm}[H]
@@ -39,7 +39,7 @@ una forza lungo l'asse z, come mostrato in Algorithm \ref{algo:spiral}.
         
         \Repeat 
             \While{$\text{force.z} > \text{threshold}$}
-                \State twist $\gets$ (0, 0, -0.015) // vado gi\'{u} finch\'{e} non c'\'{e} un contatto
+                \State twist $\gets$ (0, 0, -0.015) // vado gi\`{u} finch\`{e} non c'\`{e} un contatto
                 \State publish(twist)
             \EndWhile
             \State twist $\gets$ 0
@@ -56,14 +56,14 @@ una forza lungo l'asse z, come mostrato in Algorithm \ref{algo:spiral}.
         \Until{$\text{force.z} > \text{threshold}$ \textbf{and} $\text{height} - \text{currentHeight} < \text{lim}$}
     \end{algorithmic}
     \end{algorithm}
-Se la differenza di altezza \'{e} superiore ad una determinata soglia, significa che probabilmente si \'{e} 
-trovato il foro e quindi il gripper si aprir\'{a} per favorire l'inserimento dell'oggetto. 
+Se la differenza di altezza \`{e} superiore ad una determinata soglia, significa che probabilmente si \`{e} 
+trovato il foro e quindi il gripper si aprir\`{a} per favorire l'inserimento dell'oggetto. 
 A differenza della versione mostrata in \ref{sec:pick_place}, questa non raggiunge sempre l'obiettivo. 
-Pu\'{o} capitare, infatti, che il braccio non trovi mai la cavit\'{a} per via dell'incremento del raggio della spirale e che finisca 
-al di l\'{a} dei bordi della scatola. Inoltre, se non si trova perfettamente al di sopra del foro, potrebbe non cominciare la 
-fase di discesa non portando cos\'{i} a termine il compito. 
+Pu\`{o} capitare, infatti, che il braccio non trovi mai la cavit\`{a} per via dell'incremento del raggio della spirale e che finisca 
+al di l\`{a} dei bordi della scatola. Inoltre, se non si trova perfettamente al di sopra del foro, potrebbe non cominciare la 
+fase di discesa non portando cos\`{i} a termine il compito. 
 In Figura \ref{fig:spiral_insertion}, il quadrato centrale indica il foro in cui inserire l'oggetto, mentre le croci individuano i 
-punti da cui \'{e} stato fatto partire il movimento a spirale nei vari test effettuati. 
+punti da cui \`{e} stato fatto partire il movimento a spirale nei vari test effettuati. 
 \begin{figure}[H]
     \centering
     \includegraphics*[width=0.65\textwidth]{images/spiral.png}
@@ -84,6 +84,6 @@ Nella tabella vengono mostrati i risultati nei vari casi
      \hline
     \end{tabular}
 \end{center}
-Come gi\'{a} anticipato, con questa applicazione non si ottengono sempre i risultati sperati. In (3) il robot ha cominciato il 
-movimento troppo vicino al bordo del contenitore ed \'{e} andato oltre ad esso. In (5), invece, l'interferenza degli altri fori 
-ha fatto s\'{i} che si incastrasse senza raggiungere l'obiettivo.
+Come gi\`{a} anticipato, con questa applicazione non si ottengono sempre i risultati sperati. In (3) il robot ha cominciato il 
+movimento troppo vicino al bordo del contenitore ed \`{e} andato oltre ad esso. In (5), invece, l'interferenza degli altri fori 
+ha fatto s\`{i} che si incastrasse senza raggiungere l'obiettivo.

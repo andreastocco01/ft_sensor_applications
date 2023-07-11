@@ -1,13 +1,13 @@
-Come accennato, questa applicazione si focalizza sulla necessit\'{a} di poter muovere il robot a piacimento, senza dover 
+Come accennato, questa applicazione si focalizza sulla necessit\`{a} di poter muovere il robot a piacimento, senza dover 
 ricorrere all'utilizzo del teach pendant o RViz. 
-Diventa di fondamentale importanza se integrata in applicazioni collaborative, per rendere pi\'{u} user friendly l'interfacciamento 
+Diventa di fondamentale importanza se integrata in applicazioni collaborative, per rendere pi\`{u} user friendly l'interfacciamento 
 con il robot. 
 Quando il sensore rileva delle forze superiori ad una determinata soglia (calcolata sperimentalmente), viene inviato al robot un 
-comando \verb|Twist| per farlo muovere con una velocit\'{a} proporzionale alla forza applicata in input. In questo modo, il robot `segue' 
-le forze impartite dall'operatore convertendole in termini di velocit\'{a} di movimento\footnotemark{}. 
-Lo pseudocodice \'{e} riportato in Algorithm \ref{algo:force_follower}. Sono stati impostati due parametri fondamentali: il parametro 
-\textit{alpha} rappresenta il coefficiente con cui verranno scalati i valori delle forze rilevate per calcolare la velocit\'{a} di 
-movimento finale, mentre la variabile \textit{threshold} indica la soglia entro la quale l'input dell'operatore non verr\'{a} 
+comando \verb|Twist| per farlo muovere con una velocit\`{a} proporzionale alla forza applicata in input. In questo modo, il robot `segue' 
+le forze impartite dall'operatore convertendole in termini di velocit\`{a} di movimento\footnotemark{}. 
+Lo pseudocodice \`{e} riportato in Algorithm \ref{algo:force_follower}. Sono stati impostati due parametri fondamentali: il parametro 
+\textit{alpha} rappresenta il coefficiente con cui verranno scalati i valori delle forze rilevate per calcolare la velocit\`{a} di 
+movimento finale, mentre la variabile \textit{threshold} indica la soglia entro la quale l'input dell'operatore non verr\`{a} 
 considerato.
 \begin{algorithm}[H]
 \caption{Inseguitore di forza}\label{algo:force_follower}
@@ -43,15 +43,15 @@ considerato.
 Dopo aver portato il robot in posizione di partenza con MoveIt, viene attivato \verb|twist_controller| con la stessa funzione 
 utilizzata nell'esperimento del burro d'arachidi (presente in \verb|utils.cpp|).  
 All'interno del vettore \verb|forces| vengono salvate le ultime 20 misurazioni del sensore. Di queste ne viene calcolata la media 
-e, se il modulo \'{e} superiore alla soglia specificata (parametro \textit{threshold}), viene inviato al robot un comando 
+e, se il modulo \`{e} superiore alla soglia specificata (parametro \textit{threshold}), viene inviato al robot un comando 
 \verb|Twist| contenente uno scalamento delle 
-forze rilevate nelle tre componenti. Il calcolo della velocit\'{a} di movimento viene fatto sulla media degli ultimi campioni 
-per una questione di utilizzabilit\'{a}, in modo da rendere pi\'{u} fluida la risposta del robot riducendo le oscillazioni dovute 
-alle forze pi\'{u} piccole. Servirsi delle misurazioni singole 
-per il calcolo del vettore velocit\'{a} da inviare al robot 
+forze rilevate nelle tre componenti. Il calcolo della velocit\`{a} di movimento viene fatto sulla media degli ultimi campioni 
+per una questione di utilizzabilit\`{a}, in modo da rendere pi\`{u} fluida la risposta del robot riducendo le oscillazioni dovute 
+alle forze pi\`{u} piccole. Servirsi delle misurazioni singole 
+per il calcolo del vettore velocit\`{a} da inviare al robot 
 porta ad un movimento poco fluido e impulsivo che peggiora l'esperienza utente. 
 Utilizzando la media, invece, le piccole variazioni 
-di forza generate dall'operatore vengono ammortizzate portando ad una risposta da parte del braccio pi\'{u} naturale.
-La conversione tra forza e velocit\'{a} avviene mediante un'attenuazione delle componenti del vettore media per un coefficiente 
-costante (\textit{alpha}). In questo modo si riduce l'influenza delle forze `piccole' nel vettore velocit\'{a} risultante, valorizzando maggiormente le 
-componenti pi\'{u} ampie. 
+di forza generate dall'operatore vengono ammortizzate portando ad una risposta da parte del braccio pi\`{u} naturale.
+La conversione tra forza e velocit\`{a} avviene mediante un'attenuazione delle componenti del vettore media per un coefficiente 
+costante (\textit{alpha}). In questo modo si riduce l'influenza delle forze `piccole' nel vettore velocit\`{a} risultante, valorizzando maggiormente le 
+componenti pi\`{u} ampie. 
